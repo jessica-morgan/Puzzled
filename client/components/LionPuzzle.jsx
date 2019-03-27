@@ -1,0 +1,67 @@
+import React from 'react'
+
+const lionRow1Col1 = {id: 1, img: '/lion/lion-row-1-col-1.jpg'}
+const lionRow1Col2 = {id: 2, img: '/lion/lion-row-1-col-2.jpg'}
+const lionRow2Col1 = {id: 3, img: '/lion/lion-row-1-col-1.jpg'}
+const lionRow2Col2 = {id: 4, img: '/lion/lion-row-2-col-2.jpg'}
+
+class LionPuzzle extends React.Component {
+    constructor (props) {
+      super(props)
+      this.state = {
+        1: lionRow1Col1,
+        2: lionRow1Col2,
+        3: lionRow2Col1,
+        4: lionRow2Col2,
+        selectedImg: []
+      }
+      this.handleClick = this.handleClick.bind(this)
+      this.compareId = this.compareId.bind(this)
+    }
+
+   handleClick(id) {
+     this.setState({selectedImg: id})
+    }
+  
+    compareId(selectedImg, id) {
+     if (selectedImg === Number(id)) {
+        console.log(id)
+        const img = document.getElementById(id.toString())
+        img.src = this.state[Number(id)].img
+        console.log(img)
+     } else {
+         console.log(selectedImg, id)
+     }
+    }
+
+    render () {
+
+      
+      return (
+        <div>
+         <div>
+          <h1>Starter</h1>
+         </div>
+
+         <img style={{border: '5px solid'}} id='1' onClick={() => this.compareId(this.state.selectedImg, '1')}>
+         </img>
+
+         <img img style={{border: '5px solid'}} id='2' onClick={() => this.compareId(this.state.selectedImg, '2')}>
+         </img>
+
+         <img img style={{border: '5px solid'}} id='3' onClick={() => this.compareId(this.state.selectedImg, '3')}>
+         </img>
+
+         <img img style={{border: '5px solid'}} id='4' onClick={() => this.compareId(this.state.selectedImg, '4')}>
+         </img>
+
+            <img src={lionRow1Col1.img} onClick={() => this.handleClick(1)}/> 
+            <img src={lionRow1Col2.img} onClick={() => this.handleClick(2)}/> 
+            <img src={lionRow2Col1.img} onClick={() => this.handleClick(3)}/> 
+            <img src={lionRow2Col2.img} onClick={() => this.handleClick(4)}/> 
+        </div>
+      )
+    }
+  }
+
+export default LionPuzzle
