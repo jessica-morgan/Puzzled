@@ -1,4 +1,10 @@
-img {
-    width: 200px;
-    height: 150px;
+.img-selection {
+    width: 180px;
+    height: 130px;
+    padding-right: 3px;
+}
+
+.lion-puzzle-pieces {
+    width: 300px;
+    height: 250px;
 }

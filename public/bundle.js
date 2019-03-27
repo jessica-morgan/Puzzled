@@ -31444,7 +31444,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var lionRow1Col1 = { id: 1, img: '/lion/lion-row-1-col-1.jpg' };
 var lionRow1Col2 = { id: 2, img: '/lion/lion-row-1-col-2.jpg' };
-var lionRow2Col1 = { id: 3, img: '/lion/lion-row-1-col-1.jpg' };
+var lionRow2Col1 = { id: 3, img: '/lion/lion-row-2-col-1.jpg' };
 var lionRow2Col2 = { id: 4, img: '/lion/lion-row-2-col-2.jpg' };
 
 var LionPuzzle = function (_React$Component) {
@@ -31476,10 +31476,8 @@ var LionPuzzle = function (_React$Component) {
     key: 'compareId',
     value: function compareId(selectedImg, id) {
       if (selectedImg === Number(id)) {
-        console.log(id);
         var img = document.getElementById(id.toString());
         img.src = this.state[Number(id)].img;
-        console.log(img);
       } else {
         console.log(selectedImg, id);
       }
@@ -31501,30 +31499,36 @@ var LionPuzzle = function (_React$Component) {
             'Starter'
           )
         ),
-        _react2.default.createElement('img', { style: { border: '5px solid' }, id: '1', onClick: function onClick() {
+        _react2.default.createElement('img', { className: 'lion-puzzle-pieces', id: '1',
+          onClick: function onClick() {
             return _this2.compareId(_this2.state.selectedImg, '1');
           } }),
-        _react2.default.createElement('img', { img: true, style: { border: '5px solid' }, id: '2', onClick: function onClick() {
+        _react2.default.createElement('img', { className: 'lion-puzzle-pieces', id: '2', onClick: function onClick() {
             return _this2.compareId(_this2.state.selectedImg, '2');
           } }),
-        _react2.default.createElement('img', { img: true, style: { border: '5px solid' }, id: '3', onClick: function onClick() {
+        _react2.default.createElement('br', null),
+        _react2.default.createElement('img', { className: 'lion-puzzle-pieces', id: '3', onClick: function onClick() {
             return _this2.compareId(_this2.state.selectedImg, '3');
           } }),
-        _react2.default.createElement('img', { img: true, style: { border: '5px solid' }, id: '4', onClick: function onClick() {
+        _react2.default.createElement('img', { className: 'lion-puzzle-pieces', id: '4', onClick: function onClick() {
             return _this2.compareId(_this2.state.selectedImg, '4');
           } }),
-        _react2.default.createElement('img', { src: lionRow1Col1.img, onClick: function onClick() {
-            return _this2.handleClick(1);
-          } }),
-        _react2.default.createElement('img', { src: lionRow1Col2.img, onClick: function onClick() {
-            return _this2.handleClick(2);
-          } }),
-        _react2.default.createElement('img', { src: lionRow2Col1.img, onClick: function onClick() {
-            return _this2.handleClick(3);
-          } }),
-        _react2.default.createElement('img', { src: lionRow2Col2.img, onClick: function onClick() {
-            return _this2.handleClick(4);
-          } })
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement('img', { src: lionRow2Col2.img, className: 'img-selection', onClick: function onClick() {
+              return _this2.handleClick(4);
+            } }),
+          _react2.default.createElement('img', { src: lionRow1Col2.img, className: 'img-selection', onClick: function onClick() {
+              return _this2.handleClick(2);
+            } }),
+          _react2.default.createElement('img', { src: lionRow2Col1.img, className: 'img-selection', onClick: function onClick() {
+              return _this2.handleClick(3);
+            } }),
+          _react2.default.createElement('img', { src: lionRow1Col1.img, className: 'img-selection', onClick: function onClick() {
+              return _this2.handleClick(1);
+            } })
+        )
       );
     }
   }]);

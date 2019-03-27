@@ -2,7 +2,7 @@ import React from 'react'
 
 const lionRow1Col1 = {id: 1, img: '/lion/lion-row-1-col-1.jpg'}
 const lionRow1Col2 = {id: 2, img: '/lion/lion-row-1-col-2.jpg'}
-const lionRow2Col1 = {id: 3, img: '/lion/lion-row-1-col-1.jpg'}
+const lionRow2Col1 = {id: 3, img: '/lion/lion-row-2-col-1.jpg'}
 const lionRow2Col2 = {id: 4, img: '/lion/lion-row-2-col-2.jpg'}
 
 class LionPuzzle extends React.Component {
@@ -25,10 +25,8 @@ class LionPuzzle extends React.Component {
   
     compareId(selectedImg, id) {
      if (selectedImg === Number(id)) {
-        console.log(id)
         const img = document.getElementById(id.toString())
         img.src = this.state[Number(id)].img
-        console.log(img)
      } else {
          console.log(selectedImg, id)
      }
@@ -43,22 +41,28 @@ class LionPuzzle extends React.Component {
           <h1>Starter</h1>
          </div>
 
-         <img style={{border: '5px solid'}} id='1' onClick={() => this.compareId(this.state.selectedImg, '1')}>
+        <img className='lion-puzzle-pieces' id='1' 
+         onClick={() => this.compareId(this.state.selectedImg, '1')}>
+        </img>
+
+        <img className='lion-puzzle-pieces' id='2' onClick={() => this.compareId(this.state.selectedImg, '2')}>
+         </img> 
+
+        <br></br>
+
+         <img className='lion-puzzle-pieces' id='3' onClick={() => this.compareId(this.state.selectedImg, '3')}>
          </img>
 
-         <img img style={{border: '5px solid'}} id='2' onClick={() => this.compareId(this.state.selectedImg, '2')}>
+         <img className='lion-puzzle-pieces' id='4' onClick={() => this.compareId(this.state.selectedImg, '4')}>
          </img>
 
-         <img img style={{border: '5px solid'}} id='3' onClick={() => this.compareId(this.state.selectedImg, '3')}>
-         </img>
+            <div>
+            <img src={lionRow2Col2.img} className='img-selection' onClick={() => this.handleClick(4)}/>     
+            <img src={lionRow1Col2.img} className='img-selection' onClick={() => this.handleClick(2)}/> 
+            <img src={lionRow2Col1.img} className='img-selection' onClick={() => this.handleClick(3)}/> 
+            <img src={lionRow1Col1.img} className='img-selection' onClick={() => this.handleClick(1)}/>
+            </div>
 
-         <img img style={{border: '5px solid'}} id='4' onClick={() => this.compareId(this.state.selectedImg, '4')}>
-         </img>
-
-            <img src={lionRow1Col1.img} onClick={() => this.handleClick(1)}/> 
-            <img src={lionRow1Col2.img} onClick={() => this.handleClick(2)}/> 
-            <img src={lionRow2Col1.img} onClick={() => this.handleClick(3)}/> 
-            <img src={lionRow2Col2.img} onClick={() => this.handleClick(4)}/> 
         </div>
       )
     }
