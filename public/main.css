@@ -1,10 +1,21 @@
-.img-selection {
-    width: 180px;
+.lion-img-selection {
+    width: 200px;
     height: 130px;
     padding-right: 3px;
 }
 
 .lion-puzzle-pieces {
-    width: 300px;
+    width: 380px;
     height: 250px;
+}
+
+.fish-img-selection {
+    width: 100px;
+    height: 55px;
+    padding-right: 3px;
+}
+
+.fish-puzzle-pieces {
+    width: 190px;
+    height: 100px;
 }

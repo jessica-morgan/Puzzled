@@ -31344,7 +31344,7 @@ exports.default = example;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _react = __webpack_require__(1);
@@ -31361,15 +31361,24 @@ var _LionPuzzle = __webpack_require__(87);
 
 var _LionPuzzle2 = _interopRequireDefault(_LionPuzzle);
 
+var _FishPuzzle = __webpack_require__(88);
+
+var _FishPuzzle2 = _interopRequireDefault(_FishPuzzle);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
-    return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Home2.default }),
-        _react2.default.createElement(_reactRouterDom.Route, { path: '/animals', component: _LionPuzzle2.default })
-    );
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      _reactRouterDom.Switch,
+      null,
+      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Home2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/animals', component: _LionPuzzle2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/animals-fish', component: _FishPuzzle2.default })
+    )
+  );
 };
 
 exports.default = (0, _reactRouterDom.withRouter)(App);
@@ -31434,6 +31443,8 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouterDom = __webpack_require__(15);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -31496,7 +31507,7 @@ var LionPuzzle = function (_React$Component) {
           _react2.default.createElement(
             'h1',
             null,
-            'Starter'
+            'Animals'
           )
         ),
         _react2.default.createElement('img', { className: 'lion-puzzle-pieces', id: '1',
@@ -31514,18 +31525,27 @@ var LionPuzzle = function (_React$Component) {
             return _this2.compareId(_this2.state.selectedImg, '4');
           } }),
         _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/animals-fish' },
+          _react2.default.createElement(
+            'h2',
+            { style: { paddingLeft: '880px' } },
+            'Next'
+          )
+        ),
+        _react2.default.createElement(
           'div',
           null,
-          _react2.default.createElement('img', { src: lionRow2Col2.img, className: 'img-selection', onClick: function onClick() {
+          _react2.default.createElement('img', { src: lionRow2Col2.img, className: 'lion-img-selection', onClick: function onClick() {
               return _this2.handleClick(4);
             } }),
-          _react2.default.createElement('img', { src: lionRow1Col2.img, className: 'img-selection', onClick: function onClick() {
+          _react2.default.createElement('img', { src: lionRow1Col2.img, className: 'lion-img-selection', onClick: function onClick() {
               return _this2.handleClick(2);
             } }),
-          _react2.default.createElement('img', { src: lionRow2Col1.img, className: 'img-selection', onClick: function onClick() {
+          _react2.default.createElement('img', { src: lionRow2Col1.img, className: 'lion-img-selection', onClick: function onClick() {
               return _this2.handleClick(3);
             } }),
-          _react2.default.createElement('img', { src: lionRow1Col1.img, className: 'img-selection', onClick: function onClick() {
+          _react2.default.createElement('img', { src: lionRow1Col1.img, className: 'lion-img-selection', onClick: function onClick() {
               return _this2.handleClick(1);
             } })
         )
@@ -31536,7 +31556,264 @@ var LionPuzzle = function (_React$Component) {
   return LionPuzzle;
 }(_react2.default.Component);
 
-exports.default = LionPuzzle;
+exports.default = (0, _reactRouterDom.withRouter)(LionPuzzle);
+
+/***/ }),
+/* 88 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(15);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var fishRow1Col1 = { id: 1, img: '/fish/fish-row-1-col-1.jpg' };
+var fishRow1Col2 = { id: 2, img: '/fish/fish-row-1-col-2.jpg' };
+var fishRow1Col3 = { id: 3, img: '/fish/fish-row-1-col-3.jpg' };
+var fishRow1Col4 = { id: 4, img: '/fish/fish-row-1-col-4.jpg' };
+var fishRow2Col1 = { id: 5, img: '/fish/fish-row-2-col-1.jpg' };
+var fishRow2Col2 = { id: 6, img: '/fish/fish-row-2-col-2.jpg' };
+var fishRow2Col3 = { id: 7, img: '/fish/fish-row-2-col-3.jpg' };
+var fishRow2Col4 = { id: 8, img: '/fish/fish-row-2-col-4.jpg' };
+var fishRow3Col1 = { id: 9, img: '/fish/fish-row-3-col-1.jpg' };
+var fishRow3Col2 = { id: 10, img: '/fish/fish-row-3-col-2.jpg' };
+var fishRow3Col3 = { id: 11, img: '/fish/fish-row-3-col-3.jpg' };
+var fishRow3Col4 = { id: 12, img: '/fish/fish-row-3-col-4.jpg' };
+var fishRow4Col1 = { id: 13, img: '/fish/fish-row-4-col-1.jpg' };
+var fishRow4Col2 = { id: 14, img: '/fish/fish-row-4-col-2.jpg' };
+var fishRow4Col3 = { id: 15, img: '/fish/fish-row-4-col-3.jpg' };
+var fishRow4Col4 = { id: 16, img: '/fish/fish-row-4-col-4.jpg' };
+var fishRow5Col1 = { id: 17, img: '/fish/fish-row-5-col-1.jpg' };
+var fishRow5Col2 = { id: 18, img: '/fish/fish-row-5-col-2.jpg' };
+var fishRow5Col3 = { id: 19, img: '/fish/fish-row-5-col-3.jpg' };
+var fishRow5Col4 = { id: 20, img: '/fish/fish-row-5-col-4.jpg' };
+
+var FishPuzzle = function (_React$Component) {
+  _inherits(FishPuzzle, _React$Component);
+
+  function FishPuzzle(props) {
+    _classCallCheck(this, FishPuzzle);
+
+    var _this = _possibleConstructorReturn(this, (FishPuzzle.__proto__ || Object.getPrototypeOf(FishPuzzle)).call(this, props));
+
+    _this.state = {
+      1: fishRow1Col1,
+      2: fishRow1Col2,
+      3: fishRow1Col3,
+      4: fishRow1Col4,
+      5: fishRow2Col1,
+      6: fishRow2Col2,
+      7: fishRow2Col3,
+      8: fishRow2Col4,
+      9: fishRow3Col1,
+      10: fishRow3Col2,
+      11: fishRow3Col3,
+      12: fishRow3Col4,
+      13: fishRow4Col1,
+      14: fishRow4Col2,
+      15: fishRow4Col3,
+      16: fishRow4Col4,
+      17: fishRow5Col1,
+      18: fishRow5Col2,
+      19: fishRow5Col3,
+      20: fishRow5Col4,
+      selectedImg: []
+    };
+    _this.handleClick = _this.handleClick.bind(_this);
+    _this.compareId = _this.compareId.bind(_this);
+    return _this;
+  }
+
+  _createClass(FishPuzzle, [{
+    key: 'handleClick',
+    value: function handleClick(id) {
+      this.setState({ selectedImg: id });
+    }
+  }, {
+    key: 'compareId',
+    value: function compareId(selectedImg, id) {
+      if (selectedImg === Number(id)) {
+        var img = document.getElementById(id.toString());
+        img.src = this.state[Number(id)].img;
+      } else {
+        console.log(selectedImg, id);
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'h1',
+            null,
+            'Animals'
+          )
+        ),
+        _react2.default.createElement('img', { className: 'fish-puzzle-pieces', id: '1',
+          onClick: function onClick() {
+            return _this2.compareId(_this2.state.selectedImg, '1');
+          } }),
+        _react2.default.createElement('img', { className: 'fish-puzzle-pieces', id: '2', onClick: function onClick() {
+            return _this2.compareId(_this2.state.selectedImg, '2');
+          } }),
+        _react2.default.createElement('img', { className: 'fish-puzzle-pieces', id: '3', onClick: function onClick() {
+            return _this2.compareId(_this2.state.selectedImg, '3');
+          } }),
+        _react2.default.createElement('img', { className: 'fish-puzzle-pieces', id: '4', onClick: function onClick() {
+            return _this2.compareId(_this2.state.selectedImg, '4');
+          } }),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement('img', { className: 'fish-puzzle-pieces', id: '5',
+          onClick: function onClick() {
+            return _this2.compareId(_this2.state.selectedImg, '5');
+          } }),
+        _react2.default.createElement('img', { className: 'fish-puzzle-pieces', id: '6', onClick: function onClick() {
+            return _this2.compareId(_this2.state.selectedImg, '6');
+          } }),
+        _react2.default.createElement('img', { className: 'fish-puzzle-pieces', id: '7', onClick: function onClick() {
+            return _this2.compareId(_this2.state.selectedImg, '7');
+          } }),
+        _react2.default.createElement('img', { className: 'fish-puzzle-pieces', id: '8', onClick: function onClick() {
+            return _this2.compareId(_this2.state.selectedImg, '8');
+          } }),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement('img', { className: 'fish-puzzle-pieces', id: '9', onClick: function onClick() {
+            return _this2.compareId(_this2.state.selectedImg, '9');
+          } }),
+        _react2.default.createElement('img', { className: 'fish-puzzle-pieces', id: '10', onClick: function onClick() {
+            return _this2.compareId(_this2.state.selectedImg, '10');
+          } }),
+        _react2.default.createElement('img', { className: 'fish-puzzle-pieces', id: '11',
+          onClick: function onClick() {
+            return _this2.compareId(_this2.state.selectedImg, '11');
+          } }),
+        _react2.default.createElement('img', { className: 'fish-puzzle-pieces', id: '12', onClick: function onClick() {
+            return _this2.compareId(_this2.state.selectedImg, '12');
+          } }),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement('img', { className: 'fish-puzzle-pieces', id: '13', onClick: function onClick() {
+            return _this2.compareId(_this2.state.selectedImg, '13');
+          } }),
+        _react2.default.createElement('img', { className: 'fish-puzzle-pieces', id: '14', onClick: function onClick() {
+            return _this2.compareId(_this2.state.selectedImg, '14');
+          } }),
+        _react2.default.createElement('img', { className: 'fish-puzzle-pieces', id: '15',
+          onClick: function onClick() {
+            return _this2.compareId(_this2.state.selectedImg, '15');
+          } }),
+        _react2.default.createElement('img', { className: 'fish-puzzle-pieces', id: '16', onClick: function onClick() {
+            return _this2.compareId(_this2.state.selectedImg, '16');
+          } }),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement('img', { className: 'fish-puzzle-pieces', id: '17', onClick: function onClick() {
+            return _this2.compareId(_this2.state.selectedImg, '17');
+          } }),
+        _react2.default.createElement('img', { className: 'fish-puzzle-pieces', id: '18', onClick: function onClick() {
+            return _this2.compareId(_this2.state.selectedImg, '18');
+          } }),
+        _react2.default.createElement('img', { className: 'fish-puzzle-pieces', id: '19', onClick: function onClick() {
+            return _this2.compareId(_this2.state.selectedImg, '19');
+          } }),
+        _react2.default.createElement('img', { className: 'fish-puzzle-pieces', id: '20', onClick: function onClick() {
+            return _this2.compareId(_this2.state.selectedImg, '20');
+          } }),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement('img', { src: fishRow1Col1.img, className: 'fish-img-selection', onClick: function onClick() {
+              return _this2.handleClick(1);
+            } }),
+          _react2.default.createElement('img', { src: fishRow1Col2.img, className: 'fish-img-selection', onClick: function onClick() {
+              return _this2.handleClick(2);
+            } }),
+          _react2.default.createElement('img', { src: fishRow1Col3.img, className: 'fish-img-selection', onClick: function onClick() {
+              return _this2.handleClick(3);
+            } }),
+          _react2.default.createElement('img', { src: fishRow1Col4.img, className: 'fish-img-selection', onClick: function onClick() {
+              return _this2.handleClick(4);
+            } }),
+          _react2.default.createElement('img', { src: fishRow2Col1.img, className: 'fish-img-selection', onClick: function onClick() {
+              return _this2.handleClick(5);
+            } }),
+          _react2.default.createElement('img', { src: fishRow2Col2.img, className: 'fish-img-selection', onClick: function onClick() {
+              return _this2.handleClick(6);
+            } }),
+          _react2.default.createElement('img', { src: fishRow2Col3.img, className: 'fish-img-selection', onClick: function onClick() {
+              return _this2.handleClick(7);
+            } }),
+          _react2.default.createElement('img', { src: fishRow2Col4.img, className: 'fish-img-selection', onClick: function onClick() {
+              return _this2.handleClick(8);
+            } }),
+          _react2.default.createElement('img', { src: fishRow3Col1.img, className: 'fish-img-selection', onClick: function onClick() {
+              return _this2.handleClick(9);
+            } }),
+          _react2.default.createElement('img', { src: fishRow3Col2.img, className: 'fish-img-selection', onClick: function onClick() {
+              return _this2.handleClick(10);
+            } }),
+          _react2.default.createElement('img', { src: fishRow3Col3.img, className: 'fish-img-selection', onClick: function onClick() {
+              return _this2.handleClick(11);
+            } }),
+          _react2.default.createElement('img', { src: fishRow3Col4.img, className: 'fish-img-selection', onClick: function onClick() {
+              return _this2.handleClick(12);
+            } }),
+          _react2.default.createElement('img', { src: fishRow4Col1.img, className: 'fish-img-selection', onClick: function onClick() {
+              return _this2.handleClick(13);
+            } }),
+          _react2.default.createElement('img', { src: fishRow4Col2.img, className: 'fish-img-selection', onClick: function onClick() {
+              return _this2.handleClick(14);
+            } }),
+          _react2.default.createElement('img', { src: fishRow4Col3.img, className: 'fish-img-selection', onClick: function onClick() {
+              return _this2.handleClick(15);
+            } }),
+          _react2.default.createElement('img', { src: fishRow4Col4.img, className: 'fish-img-selection', onClick: function onClick() {
+              return _this2.handleClick(16);
+            } }),
+          _react2.default.createElement('img', { src: fishRow5Col1.img, className: 'fish-img-selection', onClick: function onClick() {
+              return _this2.handleClick(17);
+            } }),
+          _react2.default.createElement('img', { src: fishRow5Col2.img, className: 'fish-img-selection', onClick: function onClick() {
+              return _this2.handleClick(18);
+            } }),
+          _react2.default.createElement('img', { src: fishRow5Col3.img, className: 'fish-img-selection', onClick: function onClick() {
+              return _this2.handleClick(19);
+            } }),
+          _react2.default.createElement('img', { src: fishRow5Col4.img, className: 'fish-img-selection', onClick: function onClick() {
+              return _this2.handleClick(20);
+            } })
+        )
+      );
+    }
+  }]);
+
+  return FishPuzzle;
+}(_react2.default.Component);
+
+exports.default = (0, _reactRouterDom.withRouter)(FishPuzzle);
 
 /***/ })
 /******/ ]);

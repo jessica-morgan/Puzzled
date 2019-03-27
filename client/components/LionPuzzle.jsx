@@ -1,4 +1,5 @@
 import React from 'react'
+import { withRouter, Link } from 'react-router-dom'
 
 const lionRow1Col1 = {id: 1, img: '/lion/lion-row-1-col-1.jpg'}
 const lionRow1Col2 = {id: 2, img: '/lion/lion-row-1-col-2.jpg'}
@@ -38,7 +39,7 @@ class LionPuzzle extends React.Component {
       return (
         <div>
          <div>
-          <h1>Starter</h1>
+          <h1>Animals</h1>
          </div>
 
         <img className='lion-puzzle-pieces' id='1' 
@@ -56,11 +57,13 @@ class LionPuzzle extends React.Component {
          <img className='lion-puzzle-pieces' id='4' onClick={() => this.compareId(this.state.selectedImg, '4')}>
          </img>
 
+        <Link to='/animals-fish'><h2 style={{paddingLeft: '880px'}}>Next</h2></Link>
+
             <div>
-            <img src={lionRow2Col2.img} className='img-selection' onClick={() => this.handleClick(4)}/>     
-            <img src={lionRow1Col2.img} className='img-selection' onClick={() => this.handleClick(2)}/> 
-            <img src={lionRow2Col1.img} className='img-selection' onClick={() => this.handleClick(3)}/> 
-            <img src={lionRow1Col1.img} className='img-selection' onClick={() => this.handleClick(1)}/>
+            <img src={lionRow2Col2.img} className='lion-img-selection' onClick={() => this.handleClick(4)}/>     
+            <img src={lionRow1Col2.img} className='lion-img-selection' onClick={() => this.handleClick(2)}/> 
+            <img src={lionRow2Col1.img} className='lion-img-selection' onClick={() => this.handleClick(3)}/> 
+            <img src={lionRow1Col1.img} className='lion-img-selection' onClick={() => this.handleClick(1)}/>
             </div>
 
         </div>
@@ -68,4 +71,4 @@ class LionPuzzle extends React.Component {
     }
   }
 
-export default LionPuzzle
+export default withRouter(LionPuzzle)
