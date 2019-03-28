@@ -1,6 +1,7 @@
 import React from 'react'
 import { withRouter, Link } from 'react-router-dom'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
+//bringing in selectImg action
 import { selectImg } from '../actions/selectedImg'
 
 const lionRow1Col1 = {id: 1, img: '/lion/lion-row-1-col-1.jpg'}
@@ -16,14 +17,13 @@ class LionPuzzle extends React.Component {
         2: lionRow1Col2,
         3: lionRow2Col1,
         4: lionRow2Col2
-        // selectedImg: []
       }
       this.handleClick = this.handleClick.bind(this)
       this.compareId = this.compareId.bind(this)
     }
 
    handleClick(id) {
-     //how do i get handleClick to send selected image id to this.props.selectedImgID 
+     //handleClick is dispatching selectImg with an id to redux state when img is clicked 
      this.props.dispatch(selectImg(id))
     }
   
@@ -71,7 +71,7 @@ class LionPuzzle extends React.Component {
       )
     }
   }
-
+  //this allows us to use what has been dispatched to redux state in this component via props
   function mapStateToProps (state) {
     return {
       selectedImgID: state.selectedImgID

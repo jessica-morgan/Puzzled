@@ -1,59 +1,40 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-
-const fishRow1Col1 = {id: 1, img: '/fish/fish-row-1-col-1.jpg'}
-const fishRow1Col2 = {id: 2, img: '/fish/fish-row-1-col-2.jpg'}
-const fishRow1Col3 = {id: 3, img: '/fish/fish-row-1-col-3.jpg'}
-const fishRow1Col4 = {id: 4, img: '/fish/fish-row-1-col-4.jpg'}
-const fishRow2Col1 = {id: 5, img: '/fish/fish-row-2-col-1.jpg'}
-const fishRow2Col2 = {id: 6, img: '/fish/fish-row-2-col-2.jpg'}
-const fishRow2Col3 = {id: 7, img: '/fish/fish-row-2-col-3.jpg'}
-const fishRow2Col4 = {id: 8, img: '/fish/fish-row-2-col-4.jpg'}
-const fishRow3Col1 = {id: 9, img: '/fish/fish-row-3-col-1.jpg'}
-const fishRow3Col2 = {id: 10, img: '/fish/fish-row-3-col-2.jpg'}
-const fishRow3Col3 = {id: 11, img: '/fish/fish-row-3-col-3.jpg'}
-const fishRow3Col4 = {id: 12, img: '/fish/fish-row-3-col-4.jpg'}
-const fishRow4Col1 = {id: 13, img: '/fish/fish-row-4-col-1.jpg'}
-const fishRow4Col2 = {id: 14, img: '/fish/fish-row-4-col-2.jpg'}
-const fishRow4Col3 = {id: 15, img: '/fish/fish-row-4-col-3.jpg'}
-const fishRow4Col4 = {id: 16, img: '/fish/fish-row-4-col-4.jpg'}
-const fishRow5Col1 = {id: 17, img: '/fish/fish-row-5-col-1.jpg'}
-const fishRow5Col2 = {id: 18, img: '/fish/fish-row-5-col-2.jpg'}
-const fishRow5Col3 = {id: 19, img: '/fish/fish-row-5-col-3.jpg'}
-const fishRow5Col4 = {id: 20, img: '/fish/fish-row-5-col-4.jpg'}
+import { connect } from 'react-redux'
+import { selectImg } from '../actions/selectedImg'
+import { fishImages } from './fishPuzzleImageData'
 
 class FishPuzzle extends React.Component {
     constructor (props) {
       super(props)
       this.state = {
-        1: fishRow1Col1,
-        2: fishRow1Col2,
-        3: fishRow1Col3,
-        4: fishRow1Col4,
-        5: fishRow2Col1,
-        6: fishRow2Col2,
-        7: fishRow2Col3,
-        8: fishRow2Col4,
-        9: fishRow3Col1,
-        10: fishRow3Col2,
-        11: fishRow3Col3,
-        12: fishRow3Col4,
-        13: fishRow4Col1,
-        14: fishRow4Col2,
-        15: fishRow4Col3,
-        16: fishRow4Col4,
-        17: fishRow5Col1,
-        18: fishRow5Col2,
-        19: fishRow5Col3,
-        20: fishRow5Col4,
-        selectedImg: []
+        // 1: fishRow1Col1,
+        // 2: fishRow1Col2,
+        // 3: fishRow1Col3,
+        // 4: fishRow1Col4,
+        // 5: fishRow2Col1,
+        // 6: fishRow2Col2,
+        // 7: fishRow2Col3,
+        // 8: fishRow2Col4,
+        // 9: fishRow3Col1,
+        // 10: fishRow3Col2,
+        // 11: fishRow3Col3,
+        // 12: fishRow3Col4,
+        // 13: fishRow4Col1,
+        // 14: fishRow4Col2,
+        // 15: fishRow4Col3,
+        // 16: fishRow4Col4,
+        // 17: fishRow5Col1,
+        // 18: fishRow5Col2,
+        // 19: fishRow5Col3,
+        // 20: fishRow5Col4
       }
       this.handleClick = this.handleClick.bind(this)
       this.compareId = this.compareId.bind(this)
     }
 
    handleClick(id) {
-     this.setState({selectedImg: id})
+     this.state.props(selectImg(id))
     }
   
     compareId(selectedImg, id) {
@@ -65,12 +46,33 @@ class FishPuzzle extends React.Component {
      }
     }
 
-    render () {
+    componentDidMount () {
 
+      const newState = fishImages.map(imageData => {
+        return (
+          {[imageData.id] : imageData.img}
+        )
+    })
+  
+  //   fishImages.map(imageData => {
+  //     return this.setState(
+  //       {[imageData.id] : imageData.img}
+  //     )
+  // })
+
+    //console.log returns correct data- an array of 20 objs 
+    console.log(newState)
+    //why is this not setting state with newState
+    this.setState(newState)
+    //console.log returns empty object
+    console.log(this.state)
+  }
+    render () {
+      
       
       return (
         <div>
-         <div>
+         {/* <div>
           <h1>Animals</h1>
          </div>
 
@@ -159,11 +161,18 @@ class FishPuzzle extends React.Component {
             <img src={fishRow5Col2.img} className='fish-img-selection' onClick={() => this.handleClick(18)}/> 
             <img src={fishRow5Col3.img} className='fish-img-selection' onClick={() => this.handleClick(19)}/> 
             <img src={fishRow5Col4.img} className='fish-img-selection' onClick={() => this.handleClick(20)}/>
-            </div>
+            </div> */}
 
         </div>
       )
     }
   }
 
-export default withRouter(FishPuzzle)
+
+  function mapStateToProps (state) {
+    return {
+      selectedImgID: state.selectedImgID
+    }
+  }
+
+export default withRouter(connect(mapStateToProps)(FishPuzzle))
