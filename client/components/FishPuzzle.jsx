@@ -2,7 +2,7 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { selectImg } from '../actions/selectedImg'
-import { fishImages } from './fishPuzzleImageData'
+import { fishImages } from '../data/fishPuzzleImageData'
 
 class FishPuzzle extends React.Component {
     constructor (props) {
@@ -21,9 +21,7 @@ class FishPuzzle extends React.Component {
     compareId(selectedImg, id) {
      if (selectedImg === Number(id)) {
         const img = document.getElementById(Number(id))
-      //arrays are 0 indexed so fishArray[id] was grabbing the image after the one I wanted
-      //by making index = id -1 I can use index to access the correct image url by its id
-      const index = id -1
+        const index = id -1
         img.src = this.state.fishArray[index].url
       } else {
          console.log(selectedImg, id)

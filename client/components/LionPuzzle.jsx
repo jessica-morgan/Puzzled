@@ -3,7 +3,7 @@ import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 //importing selectImg action
 import { selectImg } from '../actions/selectedImg'
-import { lionImages } from './lionPuzzleImageData'
+import { lionImages } from '../data/lionPuzzleImageData'
 
 class LionPuzzle extends React.Component {
     constructor (props) {

@@ -31655,8 +31655,6 @@ var FishPuzzle = function (_React$Component) {
     value: function compareId(selectedImg, id) {
       if (selectedImg === Number(id)) {
         var img = document.getElementById(Number(id));
-        //arrays are 0 indexed so fishArray[id] was grabbing the image after the one I wanted
-        //by making index = id -1 I can use index to access the correct image url by its id
         var index = id - 1;
         img.src = this.state.fishArray[index].url;
       } else {
