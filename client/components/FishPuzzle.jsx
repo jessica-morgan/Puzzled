@@ -57,8 +57,8 @@ class FishPuzzle extends React.Component {
          </div> 
 
          <div>
-          {this.state.fishArray.length > 0 ? this.state.fishArray.map(imageData =>  {
-          return <img src={imageData.url} key={imageData.id} className='fish-img-selection' onClick={() => this.handleClick(imageData.id)}/>
+          {this.state.fishArray.length > 0 ? this.state.fishArray.map(imgData =>  {
+          return <img src={imgData.url} key={imgData.id} className='fish-img-selection' onClick={() => this.handleClick(imgData.id)}/>
            })
            : <div></div>
          }
