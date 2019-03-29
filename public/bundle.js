@@ -31644,8 +31644,11 @@ var FishPuzzle = function (_React$Component) {
     key: 'compareId',
     value: function compareId(selectedImg, id) {
       if (selectedImg === Number(id)) {
-        var img = document.getElementById(id.toString());
-        img.src = this.state[Number(id)].img;
+        var img = document.getElementById(Number(id));
+        //arrays are 0 indexed so fishArray[id] was grabbing the image after the one I wanted
+        //by making index = id -1 I can use index to access the correct image url by its id
+        var index = id - 1;
+        img.src = this.state.fishArray[index].url;
       } else {
         console.log(selectedImg, id);
       }
@@ -31676,8 +31679,8 @@ var FishPuzzle = function (_React$Component) {
           'div',
           null,
           this.state.fishArray.length > 0 ? this.state.fishArray.map(function (image) {
-            return _react2.default.createElement('img', { key: image.id, className: 'fish-puzzle-pieces', onClick: function onClick() {
-                return _this3.compareId(_this3.props.selectImg, image.id);
+            return _react2.default.createElement('img', { key: image.id, id: image.id, className: 'fish-puzzle-pieces', onClick: function onClick() {
+                return _this3.compareId(_this3.props.selectedImgID, image.id);
               } });
           }) : _react2.default.createElement('div', null)
         ),
