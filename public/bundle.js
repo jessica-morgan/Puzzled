@@ -31609,11 +31609,9 @@ var _reactRedux = __webpack_require__(13);
 
 var _selectedImg = __webpack_require__(31);
 
-var _fishPuzzleImageData = __webpack_require__(91);
+var _fishPuzzleImageData = __webpack_require__(90);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -31630,26 +31628,7 @@ var FishPuzzle = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (FishPuzzle.__proto__ || Object.getPrototypeOf(FishPuzzle)).call(this, props));
 
     _this.state = {
-      // 1: fishRow1Col1,
-      // 2: fishRow1Col2,
-      // 3: fishRow1Col3,
-      // 4: fishRow1Col4,
-      // 5: fishRow2Col1,
-      // 6: fishRow2Col2,
-      // 7: fishRow2Col3,
-      // 8: fishRow2Col4,
-      // 9: fishRow3Col1,
-      // 10: fishRow3Col2,
-      // 11: fishRow3Col3,
-      // 12: fishRow3Col4,
-      // 13: fishRow4Col1,
-      // 14: fishRow4Col2,
-      // 15: fishRow4Col3,
-      // 16: fishRow4Col4,
-      // 17: fishRow5Col1,
-      // 18: fishRow5Col2,
-      // 19: fishRow5Col3,
-      // 20: fishRow5Col4
+      fishArray: []
     };
     _this.handleClick = _this.handleClick.bind(_this);
     _this.compareId = _this.compareId.bind(_this);
@@ -31659,7 +31638,7 @@ var FishPuzzle = function (_React$Component) {
   _createClass(FishPuzzle, [{
     key: 'handleClick',
     value: function handleClick(id) {
-      this.state.props((0, _selectedImg.selectImg)(id));
+      this.props.dispatch((0, _selectedImg.selectImg)(id));
     }
   }, {
     key: 'compareId',
@@ -31674,29 +31653,44 @@ var FishPuzzle = function (_React$Component) {
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
+      var _this2 = this;
 
       var newState = _fishPuzzleImageData.fishImages.map(function (imageData) {
-        return _defineProperty({}, imageData.id, imageData.img);
+        return { id: imageData.id,
+          url: imageData.img };
       });
 
-      //   fishImages.map(imageData => {
-      //     return this.setState(
-      //       {[imageData.id] : imageData.img}
-      //     )
-      // })
-
-      //console.log returns correct data- an array of 20 objs 
-      console.log(newState);
-      //why is this not setting state with newState
-      this.setState(newState);
-      //console.log returns empty object
-      console.log(this.state);
+      this.setState({ fishArray: newState }, function () {
+        return console.log(_this2.state);
+      });
     }
   }, {
     key: 'render',
     value: function render() {
+      var _this3 = this;
 
-      return _react2.default.createElement('div', null);
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'div',
+          null,
+          this.state.fishArray.length > 0 ? this.state.fishArray.map(function (image) {
+            return _react2.default.createElement('img', { key: image.id, className: 'fish-puzzle-pieces', onClick: function onClick() {
+                return _this3.compareId(_this3.props.selectImg, image.id);
+              } });
+          }) : _react2.default.createElement('div', null)
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          this.state.fishArray.length > 0 ? this.state.fishArray.map(function (imageData) {
+            return _react2.default.createElement('img', { src: imageData.url, key: imageData.id, className: 'fish-img-selection', onClick: function onClick() {
+                return _this3.handleClick(imageData.id);
+              } });
+          }) : _react2.default.createElement('div', null)
+        )
+      );
     }
   }]);
 
@@ -31712,8 +31706,7 @@ function mapStateToProps(state) {
 exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(FishPuzzle));
 
 /***/ }),
-/* 90 */,
-/* 91 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

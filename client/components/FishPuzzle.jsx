@@ -8,33 +8,14 @@ class FishPuzzle extends React.Component {
     constructor (props) {
       super(props)
       this.state = {
-        // 1: fishRow1Col1,
-        // 2: fishRow1Col2,
-        // 3: fishRow1Col3,
-        // 4: fishRow1Col4,
-        // 5: fishRow2Col1,
-        // 6: fishRow2Col2,
-        // 7: fishRow2Col3,
-        // 8: fishRow2Col4,
-        // 9: fishRow3Col1,
-        // 10: fishRow3Col2,
-        // 11: fishRow3Col3,
-        // 12: fishRow3Col4,
-        // 13: fishRow4Col1,
-        // 14: fishRow4Col2,
-        // 15: fishRow4Col3,
-        // 16: fishRow4Col4,
-        // 17: fishRow5Col1,
-        // 18: fishRow5Col2,
-        // 19: fishRow5Col3,
-        // 20: fishRow5Col4
+        fishArray: []
       }
       this.handleClick = this.handleClick.bind(this)
       this.compareId = this.compareId.bind(this)
     }
 
    handleClick(id) {
-     this.state.props(selectImg(id))
+     this.props.dispatch(selectImg(id))
     }
   
     compareId(selectedImg, id) {
@@ -50,28 +31,34 @@ class FishPuzzle extends React.Component {
 
       const newState = fishImages.map(imageData => {
         return (
-          {[imageData.id] : imageData.img}
+          {id: imageData.id, 
+           url: imageData.img}
         )
     })
-  
-  //   fishImages.map(imageData => {
-  //     return this.setState(
-  //       {[imageData.id] : imageData.img}
-  //     )
-  // })
 
-    //console.log returns correct data- an array of 20 objs 
-    console.log(newState)
-    //why is this not setting state with newState
-    this.setState(newState)
-    //console.log returns empty object
-    console.log(this.state)
+    this.setState({fishArray: newState}, () => console.log(this.state))
+
   }
     render () {
-      
-      
+
       return (
+        
+        <div>         
+         
+          {/* {this.state.fishArray.map(image => {
+            return <img className='fish-puzzle-pieces' key={image.id} onClick={() => this.compareId(this.props.selectedImg, image.id)}/>
+          }
+        )}  */
+          }
+
         <div>
+          {this.state.fishArray.length > 0 ? this.state.fishArray.map(image =>  {
+          return <img key={image.id} className='fish-puzzle-pieces' onClick={() => this.compareId(this.props.selectImg, image.id)}/>
+           })
+           : <div></div>
+         }
+         </div> 
+
          {/* <div>
           <h1>Animals</h1>
          </div>
@@ -138,31 +125,15 @@ class FishPuzzle extends React.Component {
          </img>
 
          <img className='fish-puzzle-pieces' id='20' onClick={() => this.compareId(this.state.selectedImg, '20')}>
-         </img>
+         </img>*/}
 
             <div>
-            <img src={fishRow1Col1.img} className='fish-img-selection' onClick={() => this.handleClick(1)}/>     
-            <img src={fishRow1Col2.img} className='fish-img-selection' onClick={() => this.handleClick(2)}/> 
-            <img src={fishRow1Col3.img} className='fish-img-selection' onClick={() => this.handleClick(3)}/> 
-            <img src={fishRow1Col4.img} className='fish-img-selection' onClick={() => this.handleClick(4)}/>
-            <img src={fishRow2Col1.img} className='fish-img-selection' onClick={() => this.handleClick(5)}/>     
-            <img src={fishRow2Col2.img} className='fish-img-selection' onClick={() => this.handleClick(6)}/> 
-            <img src={fishRow2Col3.img} className='fish-img-selection' onClick={() => this.handleClick(7)}/> 
-            <img src={fishRow2Col4.img} className='fish-img-selection' onClick={() => this.handleClick(8)}/>
-            <img src={fishRow3Col1.img} className='fish-img-selection' onClick={() => this.handleClick(9)}/>     
-            <img src={fishRow3Col2.img} className='fish-img-selection' onClick={() => this.handleClick(10)}/> 
-            <img src={fishRow3Col3.img} className='fish-img-selection' onClick={() => this.handleClick(11)}/> 
-            <img src={fishRow3Col4.img} className='fish-img-selection' onClick={() => this.handleClick(12)}/>
-            <img src={fishRow4Col1.img} className='fish-img-selection' onClick={() => this.handleClick(13)}/>     
-            <img src={fishRow4Col2.img} className='fish-img-selection' onClick={() => this.handleClick(14)}/> 
-            <img src={fishRow4Col3.img} className='fish-img-selection' onClick={() => this.handleClick(15)}/> 
-            <img src={fishRow4Col4.img} className='fish-img-selection' onClick={() => this.handleClick(16)}/>
-            <img src={fishRow5Col1.img} className='fish-img-selection' onClick={() => this.handleClick(17)}/>     
-            <img src={fishRow5Col2.img} className='fish-img-selection' onClick={() => this.handleClick(18)}/> 
-            <img src={fishRow5Col3.img} className='fish-img-selection' onClick={() => this.handleClick(19)}/> 
-            <img src={fishRow5Col4.img} className='fish-img-selection' onClick={() => this.handleClick(20)}/>
-            </div> */}
-
+          {this.state.fishArray.length > 0 ? this.state.fishArray.map(imageData =>  {
+          return <img src={imageData.url} key={imageData.id} className='fish-img-selection' onClick={() => this.handleClick(imageData.id)}/>
+           })
+           : <div></div>
+         }
+         </div> 
         </div>
       )
     }
