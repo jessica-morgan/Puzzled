@@ -5,11 +5,14 @@ import { connect } from 'react-redux'
 import { selectImg } from '../actions/selectedImg'
 import { lionImages } from '../data/lionPuzzleImageData'
 
+const checkCompleteArray = []
+
 class LionPuzzle extends React.Component {
     constructor (props) {
       super(props)
       this.state = {
-        lionArray: []
+        lionArray: [],
+        puzzleComplete: []
       }
       this.handleClick = this.handleClick.bind(this)
       this.compareId = this.compareId.bind(this)
@@ -30,6 +33,14 @@ class LionPuzzle extends React.Component {
      }
     }
 
+   checkPuzzleComplete(selectedImgId, tileId) {
+      if (selectedImgId === tileId) {
+        checkCompleteArray.push({[selectedImgId]: tileId})
+       } else {
+     console.log(selectedImgId, tileId)
+    }
+  }
+
     componentDidMount () {
 
       const newState = lionImages.map(imageData => {
@@ -39,7 +50,7 @@ class LionPuzzle extends React.Component {
         )
     })
 
-    this.setState({lionArray: newState}, () => console.log(this.state))
+    this.setState({lionArray: newState})
 
   }
 
@@ -53,7 +64,8 @@ class LionPuzzle extends React.Component {
 
           <div>
           {this.state.lionArray.length > 0 ? this.state.lionArray.map(image => {
-            return <img key={image.id} id={image.id} className='lion-puzzle-pieces' onClick={() => this.compareId(this.props.selectedImgID, image.id)}/>
+            return <img key={image.id} id={image.id} className='lion-puzzle-pieces' 
+             onClick={() => {console.log(this.checkPuzzleComplete(this.props.selectedImgID, image.id)); console.log(checkCompleteArray); this.compareId(this.props.selectedImgID, image.id)}}/>
           })
           : <div></div>
          }
@@ -61,14 +73,16 @@ class LionPuzzle extends React.Component {
 
         <div>
           {this.state.lionArray.length > 0 ? this.state.lionArray.map(imgData => {
-            return <img src={imgData.url} key={imgData.id} className='lion-img-selection' onClick={() => this.handleClick(imgData.id)}/>
+            return <img src={imgData.url} key={imgData.id} className='lion-img-selection' 
+             onClick={() => this.handleClick(imgData.id)}/>
           })
           : <div></div>
         }
         </div>
-
-        <Link to='/animals-fish'><h2 style={{paddingLeft: '880px'}}>Next</h2></Link>
-
+        {/* for some reason only works when checking === 3 or < 3 - isn't rendering div when checking === 4 or < 4 */}
+        {checkCompleteArray.length === 3 ? <div><Link to='/animals-fish'><h2 style={{paddingLeft: '880px'}}>Next</h2></Link></div>
+        : <div> </div>}
+         
         </div>
       )
     }

@@ -37,7 +37,7 @@ class FishPuzzle extends React.Component {
         )
     })
 
-    this.setState({fishArray: newState}, () => console.log(this.state))
+    this.setState({fishArray: newState})
 
   }
     render () {
@@ -48,15 +48,17 @@ class FishPuzzle extends React.Component {
 
         <div>
           {this.state.fishArray.length > 0 ? this.state.fishArray.map(image =>  {
-          return <img key={image.id} id={image.id} className='fish-puzzle-pieces' onClick={() => this.compareId(this.props.selectedImgID, image.id)}/>
-           })
-           : <div></div>
+            return <img key={image.id} id={image.id} className='fish-puzzle-pieces' 
+             onClick={() => this.compareId(this.props.selectedImgID, image.id)}/>
+            })
+          : <div></div>
          }
          </div> 
 
          <div>
           {this.state.fishArray.length > 0 ? this.state.fishArray.map(imgData =>  {
-          return <img src={imgData.url} key={imgData.id} className='fish-img-selection' onClick={() => this.handleClick(imgData.id)}/>
+           return <img src={imgData.url} key={imgData.id} className='fish-img-selection' 
+            onClick={() => this.handleClick(imgData.id)}/>
            })
            : <div></div>
          }

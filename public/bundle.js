@@ -31468,6 +31468,8 @@ var _lionPuzzleImageData = __webpack_require__(89);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -31475,6 +31477,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 //importing selectImg action
 
+
+var checkCompleteArray = [];
 
 var LionPuzzle = function (_React$Component) {
   _inherits(LionPuzzle, _React$Component);
@@ -31485,7 +31489,8 @@ var LionPuzzle = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (LionPuzzle.__proto__ || Object.getPrototypeOf(LionPuzzle)).call(this, props));
 
     _this.state = {
-      lionArray: []
+      lionArray: [],
+      puzzleComplete: []
     };
     _this.handleClick = _this.handleClick.bind(_this);
     _this.compareId = _this.compareId.bind(_this);
@@ -31510,23 +31515,29 @@ var LionPuzzle = function (_React$Component) {
       }
     }
   }, {
+    key: 'checkPuzzleComplete',
+    value: function checkPuzzleComplete(selectedImgId, tileId) {
+      if (selectedImgId === tileId) {
+        checkCompleteArray.push(_defineProperty({}, selectedImgId, tileId));
+      } else {
+        console.log(selectedImgId, tileId);
+      }
+    }
+  }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
-      var _this2 = this;
 
       var newState = _lionPuzzleImageData.lionImages.map(function (imageData) {
         return { id: imageData.id,
           url: imageData.img };
       });
 
-      this.setState({ lionArray: newState }, function () {
-        return console.log(_this2.state);
-      });
+      this.setState({ lionArray: newState });
     }
   }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
+      var _this2 = this;
 
       return _react2.default.createElement(
         'div',
@@ -31544,8 +31555,9 @@ var LionPuzzle = function (_React$Component) {
           'div',
           null,
           this.state.lionArray.length > 0 ? this.state.lionArray.map(function (image) {
-            return _react2.default.createElement('img', { key: image.id, id: image.id, className: 'lion-puzzle-pieces', onClick: function onClick() {
-                return _this3.compareId(_this3.props.selectedImgID, image.id);
+            return _react2.default.createElement('img', { key: image.id, id: image.id, className: 'lion-puzzle-pieces',
+              onClick: function onClick() {
+                console.log(_this2.checkPuzzleComplete(_this2.props.selectedImgID, image.id));console.log(checkCompleteArray);_this2.compareId(_this2.props.selectedImgID, image.id);
               } });
           }) : _react2.default.createElement('div', null)
         ),
@@ -31553,19 +31565,28 @@ var LionPuzzle = function (_React$Component) {
           'div',
           null,
           this.state.lionArray.length > 0 ? this.state.lionArray.map(function (imgData) {
-            return _react2.default.createElement('img', { src: imgData.url, key: imgData.id, className: 'lion-img-selection', onClick: function onClick() {
-                return _this3.handleClick(imgData.id);
+            return _react2.default.createElement('img', { src: imgData.url, key: imgData.id, className: 'lion-img-selection',
+              onClick: function onClick() {
+                return _this2.handleClick(imgData.id);
               } });
           }) : _react2.default.createElement('div', null)
         ),
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: '/animals-fish' },
+        checkCompleteArray.length === 3 ? _react2.default.createElement(
+          'div',
+          null,
           _react2.default.createElement(
-            'h2',
-            { style: { paddingLeft: '880px' } },
-            'Next'
+            _reactRouterDom.Link,
+            { to: '/animals-fish' },
+            _react2.default.createElement(
+              'h2',
+              { style: { paddingLeft: '880px' } },
+              'Next'
+            )
           )
+        ) : _react2.default.createElement(
+          'div',
+          null,
+          ' '
         )
       );
     }
@@ -31664,21 +31685,18 @@ var FishPuzzle = function (_React$Component) {
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
-      var _this2 = this;
 
       var newState = _fishPuzzleImageData.fishImages.map(function (imageData) {
         return { id: imageData.id,
           url: imageData.img };
       });
 
-      this.setState({ fishArray: newState }, function () {
-        return console.log(_this2.state);
-      });
+      this.setState({ fishArray: newState });
     }
   }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
+      var _this2 = this;
 
       return _react2.default.createElement(
         'div',
@@ -31687,8 +31705,9 @@ var FishPuzzle = function (_React$Component) {
           'div',
           null,
           this.state.fishArray.length > 0 ? this.state.fishArray.map(function (image) {
-            return _react2.default.createElement('img', { key: image.id, id: image.id, className: 'fish-puzzle-pieces', onClick: function onClick() {
-                return _this3.compareId(_this3.props.selectedImgID, image.id);
+            return _react2.default.createElement('img', { key: image.id, id: image.id, className: 'fish-puzzle-pieces',
+              onClick: function onClick() {
+                return _this2.compareId(_this2.props.selectedImgID, image.id);
               } });
           }) : _react2.default.createElement('div', null)
         ),
@@ -31696,8 +31715,9 @@ var FishPuzzle = function (_React$Component) {
           'div',
           null,
           this.state.fishArray.length > 0 ? this.state.fishArray.map(function (imgData) {
-            return _react2.default.createElement('img', { src: imgData.url, key: imgData.id, className: 'fish-img-selection', onClick: function onClick() {
-                return _this3.handleClick(imgData.id);
+            return _react2.default.createElement('img', { src: imgData.url, key: imgData.id, className: 'fish-img-selection',
+              onClick: function onClick() {
+                return _this2.handleClick(imgData.id);
               } });
           }) : _react2.default.createElement('div', null)
         )
