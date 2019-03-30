@@ -61,25 +61,22 @@ class LionPuzzle extends React.Component {
         newArray[ctr] = newArray[index];
         newArray[index] = temp;
     }
-    return newArray;
+    this.setState({shuffled: newArray})
  }
 
     componentDidMount () {
-
       const newState = lionImages.map(imageData => {
         return (
           {id: imageData.id, 
            url: imageData.img}
         )
     })
-const shuffled = this.shuffle(newState)
-    this.setState({lionArray: newState, shuffled: shuffled})
-
+    this.setState({lionArray: newState}, () => {
+      this.shuffle(this.state.lionArray)
+    })
   }
 
     render () {
-      const newArray = this.shuffle(this.state.lionArray)
-      console.log('reloaded')
       return (
         <div>
          <div>
@@ -105,6 +102,11 @@ const shuffled = this.shuffle(newState)
           })
           : <div></div>
         }
+
+        <div >
+          <button onClick={() => this.shuffle(this.state.shuffled)}>Shuffle</button>
+        </div>
+
         </div>
         {/* for some reason only works when checking === 3 or < 3 - isn't rendering div when checking === 4 or < 4 */}
         {lionPuzzleCompleteArray.length === 3 ? <div><Link to='/animals-fish'><h2 style={{paddingLeft: '880px'}}>Next</h2></Link></div>
