@@ -16,6 +16,8 @@ class LionPuzzle extends React.Component {
       }
       this.handleClick = this.handleClick.bind(this)
       this.compareId = this.compareId.bind(this)
+      this.checkPuzzleComplete = this.checkPuzzleComplete.bind(this)
+      this.shuffle = this.shuffle.bind(this)
     }
 
    handleClick(id) {
