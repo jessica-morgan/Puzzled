@@ -31380,6 +31380,10 @@ var _FishPuzzle = __webpack_require__(90);
 
 var _FishPuzzle2 = _interopRequireDefault(_FishPuzzle);
 
+var _Test = __webpack_require__(92);
+
+var _Test2 = _interopRequireDefault(_Test);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
@@ -31391,7 +31395,8 @@ var App = function App() {
       null,
       _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Home2.default }),
       _react2.default.createElement(_reactRouterDom.Route, { path: '/animals', component: _LionPuzzle2.default }),
-      _react2.default.createElement(_reactRouterDom.Route, { path: '/animals-fish', component: _FishPuzzle2.default })
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/animals-fish', component: _FishPuzzle2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/test', component: _Test2.default })
     )
   );
 };
@@ -31435,6 +31440,11 @@ var App = function App() {
       _reactRouterDom.Link,
       { to: '/animals' },
       'Animals'
+    ),
+    _react2.default.createElement(
+      _reactRouterDom.Link,
+      { to: '/test' },
+      'Test'
     )
   );
 };
@@ -31478,7 +31488,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 //importing selectImg action
 
 
-var checkCompleteArray = [];
+var lionPuzzleCompleteArray = [];
 
 var LionPuzzle = function (_React$Component) {
   _inherits(LionPuzzle, _React$Component);
@@ -31490,7 +31500,7 @@ var LionPuzzle = function (_React$Component) {
 
     _this.state = {
       lionArray: [],
-      puzzleComplete: []
+      shuffled: []
     };
     _this.handleClick = _this.handleClick.bind(_this);
     _this.compareId = _this.compareId.bind(_this);
@@ -31500,6 +31510,7 @@ var LionPuzzle = function (_React$Component) {
   _createClass(LionPuzzle, [{
     key: 'handleClick',
     value: function handleClick(id) {
+      console.log(id);
       //handleClick is dispatching selectImg with an id to redux state when img is clicked 
       this.props.dispatch((0, _selectedImg.selectImg)(id));
     }
@@ -31508,8 +31519,11 @@ var LionPuzzle = function (_React$Component) {
     value: function compareId(selectedImg, id) {
       if (selectedImg === Number(id)) {
         var img = document.getElementById(Number(id));
-        var index = id - 1;
-        img.src = this.state.lionArray[index].url;
+        var item = this.state.lionArray.filter(function (item) {
+          return item.id === id;
+        });
+        console.log(item);
+        img.src = item[0].url;
       } else {
         console.log(selectedImg, id);
       }
@@ -31518,10 +31532,34 @@ var LionPuzzle = function (_React$Component) {
     key: 'checkPuzzleComplete',
     value: function checkPuzzleComplete(selectedImgId, tileId) {
       if (selectedImgId === tileId) {
-        checkCompleteArray.push(_defineProperty({}, selectedImgId, tileId));
+        lionPuzzleCompleteArray.push(_defineProperty({}, selectedImgId, tileId));
       } else {
         console.log(selectedImgId, tileId);
       }
+    }
+  }, {
+    key: 'shuffle',
+    value: function shuffle(array) {
+      var newArray = [];
+      array.forEach(function (obj) {
+        var newObj = Object.assign({}, obj);
+        newArray.push(newObj);
+      });
+      var ctr = newArray.length,
+          temp,
+          index;
+      // While there are elements in the array
+      while (ctr > 0) {
+        // Pick a random index
+        index = Math.floor(Math.random() * ctr);
+        // Decrease ctr by 1
+        ctr--;
+        // And swap the last element with it
+        temp = newArray[ctr];
+        newArray[ctr] = newArray[index];
+        newArray[index] = temp;
+      }
+      return newArray;
     }
   }, {
     key: 'componentDidMount',
@@ -31531,14 +31569,16 @@ var LionPuzzle = function (_React$Component) {
         return { id: imageData.id,
           url: imageData.img };
       });
-
-      this.setState({ lionArray: newState });
+      var shuffled = this.shuffle(newState);
+      this.setState({ lionArray: newState, shuffled: shuffled });
     }
   }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
 
+      var newArray = this.shuffle(this.state.lionArray);
+      console.log('reloaded');
       return _react2.default.createElement(
         'div',
         null,
@@ -31557,21 +31597,22 @@ var LionPuzzle = function (_React$Component) {
           this.state.lionArray.length > 0 ? this.state.lionArray.map(function (image) {
             return _react2.default.createElement('img', { key: image.id, id: image.id, className: 'lion-puzzle-pieces',
               onClick: function onClick() {
-                console.log(_this2.checkPuzzleComplete(_this2.props.selectedImgID, image.id));console.log(checkCompleteArray);_this2.compareId(_this2.props.selectedImgID, image.id);
+                _this2.checkPuzzleComplete(_this2.props.selectedImgID, image.id);
+                _this2.compareId(_this2.props.selectedImgID, image.id);
               } });
           }) : _react2.default.createElement('div', null)
         ),
         _react2.default.createElement(
           'div',
           null,
-          this.state.lionArray.length > 0 ? this.state.lionArray.map(function (imgData) {
+          this.state.lionArray.length > 0 ? this.state.shuffled.map(function (imgData) {
             return _react2.default.createElement('img', { src: imgData.url, key: imgData.id, className: 'lion-img-selection',
               onClick: function onClick() {
                 return _this2.handleClick(imgData.id);
               } });
           }) : _react2.default.createElement('div', null)
         ),
-        checkCompleteArray.length === 3 ? _react2.default.createElement(
+        lionPuzzleCompleteArray.length === 3 ? _react2.default.createElement(
           'div',
           null,
           _react2.default.createElement(
@@ -31644,11 +31685,15 @@ var _fishPuzzleImageData = __webpack_require__(91);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var fishPuzzleCompleteArray = [];
 
 var FishPuzzle = function (_React$Component) {
   _inherits(FishPuzzle, _React$Component);
@@ -31683,6 +31728,15 @@ var FishPuzzle = function (_React$Component) {
       }
     }
   }, {
+    key: 'checkPuzzleComplete',
+    value: function checkPuzzleComplete(selectedImgId, tileId) {
+      if (selectedImgId === tileId) {
+        fishPuzzleCompleteArray.push(_defineProperty({}, selectedImgId, tileId));
+      } else {
+        console.log(selectedImgId, tileId);
+      }
+    }
+  }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
 
@@ -31707,7 +31761,7 @@ var FishPuzzle = function (_React$Component) {
           this.state.fishArray.length > 0 ? this.state.fishArray.map(function (image) {
             return _react2.default.createElement('img', { key: image.id, id: image.id, className: 'fish-puzzle-pieces',
               onClick: function onClick() {
-                return _this2.compareId(_this2.props.selectedImgID, image.id);
+                _this2.checkPuzzleComplete(_this2.props.selectedImgID, image.id);_this2.compareId(_this2.props.selectedImgID, image.id);
               } });
           }) : _react2.default.createElement('div', null)
         ),
@@ -31720,6 +31774,23 @@ var FishPuzzle = function (_React$Component) {
                 return _this2.handleClick(imgData.id);
               } });
           }) : _react2.default.createElement('div', null)
+        ),
+        fishPuzzleCompleteArray.length === 19 ? _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: '/' },
+            _react2.default.createElement(
+              'h2',
+              { style: { paddingLeft: '880px' } },
+              'Next'
+            )
+          )
+        ) : _react2.default.createElement(
+          'div',
+          null,
+          ' '
         )
       );
     }
@@ -31746,7 +31817,189 @@ exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapSt
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var fishImages = exports.fishImages = [{ id: 1, img: '/fish/fish-row-1-col-1.jpg' }, { id: 2, img: '/fish/fish-row-1-col-2.jpg' }, { id: 3, img: '/fish/fish-row-1-col-3.jpg' }, { id: 4, img: '/fish/fish-row-1-col-4.jpg' }, { id: 5, img: '/fish/fish-row-2-col-1.jpg' }, { id: 6, img: '/fish/fish-row-2-col-2.jpg' }, { id: 7, img: '/fish/fish-row-2-col-3.jpg' }, { id: 8, img: '/fish/fish-row-2-col-4.jpg' }, { id: 9, img: '/fish/fish-row-3-col-1.jpg' }, { id: 10, img: '/fish/fish-row-3-col-2.jpg' }, { id: 11, img: '/fish/fish-row-3-col-3.jpg' }, { id: 12, img: '/fish/fish-row-3-col-4.jpg' }, { id: 13, img: '/fish/fish-row-4-col-1.jpg' }, { id: 14, img: '/fish/fish-row-4-col-2.jpg' }, { id: 15, img: '/fish/fish-row-4-col-3.jpg' }, { id: 16, img: '/fish/fish-row-4-col-4.jpg' }, { id: 17, img: '/fish/fish-row-5-col-1.jpg' }, { id: 18, img: '/fish/fish-row-5-col-2.jpg' }, { id: 19, img: '/fish/fish-row-5-col-3.jpg' }, { id: 20, img: '/fish/fish-row-5-col-4.jpg' }];
+var fishImages = exports.fishImages = [{ id: 17, img: '/fish/fish-row-5-col-1.jpg' }, { id: 3, img: '/fish/fish-row-1-col-3.jpg' }, { id: 15, img: '/fish/fish-row-4-col-3.jpg' }, { id: 18, img: '/fish/fish-row-5-col-2.jpg' }, { id: 6, img: '/fish/fish-row-2-col-2.jpg' }, { id: 10, img: '/fish/fish-row-3-col-2.jpg' }, { id: 8, img: '/fish/fish-row-2-col-4.jpg' }, { id: 4, img: '/fish/fish-row-1-col-4.jpg' }, { id: 7, img: '/fish/fish-row-2-col-3.jpg' }, { id: 13, img: '/fish/fish-row-4-col-1.jpg' }, { id: 1, img: '/fish/fish-row-1-col-1.jpg' }, { id: 14, img: '/fish/fish-row-4-col-2.jpg' }, { id: 20, img: '/fish/fish-row-5-col-4.jpg' }, { id: 9, img: '/fish/fish-row-3-col-1.jpg' }, { id: 16, img: '/fish/fish-row-4-col-4.jpg' }, { id: 5, img: '/fish/fish-row-2-col-1.jpg' }, { id: 11, img: '/fish/fish-row-3-col-3.jpg' }, { id: 12, img: '/fish/fish-row-3-col-4.jpg' }, { id: 2, img: '/fish/fish-row-1-col-2.jpg' }, { id: 19, img: '/fish/fish-row-5-col-3.jpg' }];
+
+/***/ }),
+/* 92 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(7);
+
+var _reactRedux = __webpack_require__(13);
+
+var _selectedImg = __webpack_require__(31);
+
+var _test = __webpack_require__(93);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+//importing selectImg action
+
+
+var lionPuzzleCompleteArray = [];
+
+var Test = function (_React$Component) {
+  _inherits(Test, _React$Component);
+
+  function Test(props) {
+    _classCallCheck(this, Test);
+
+    var _this = _possibleConstructorReturn(this, (Test.__proto__ || Object.getPrototypeOf(Test)).call(this, props));
+
+    _this.state = {
+      lionArray: []
+    };
+    _this.handleClick = _this.handleClick.bind(_this);
+    _this.compareId = _this.compareId.bind(_this);
+    return _this;
+  }
+
+  _createClass(Test, [{
+    key: 'handleClick',
+    value: function handleClick(id) {
+      //handleClick is dispatching selectImg with an id to redux state when img is clicked 
+      this.props.dispatch((0, _selectedImg.selectImg)(id));
+    }
+  }, {
+    key: 'compareId',
+    value: function compareId(selectedImg, id) {
+      //as the imgs are in random order in json file compareId now needs to find img by id not index
+      //takes the selectedImg id from redux and the id of the img element and checks for match
+      if (selectedImg === Number(id)) {
+        //getting the img element by its id to insert correct img
+        var img = document.getElementById(Number(id));
+        // const index = id -1
+        //getting the 
+        var actualIndex = this.state.lionArray.id;
+        //change data so id is key and url is value
+        //change how its rendering the imgs
+        img.src = this.state.lionArray[actualIndex].url;
+      } else {
+        console.log(selectedImg, id);
+      }
+    }
+  }, {
+    key: 'checkPuzzleComplete',
+    value: function checkPuzzleComplete(selectedImgId, tileId) {
+      if (selectedImgId === tileId) {
+        lionPuzzleCompleteArray.push(_defineProperty({}, selectedImgId, tileId));
+      } else {
+        console.log(selectedImgId, tileId);
+      }
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+
+      var newState = _test.test.map(function (imageData) {
+        return { imageData: imageData };
+      });
+      console.log(newState);
+
+      this.setState({ lionArray: newState });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'h1',
+            null,
+            'Animals'
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          this.state.lionArray.length > 0 ? this.state.lionArray.map(function (image) {
+            return _react2.default.createElement('img', { key: image.id, id: image.id, className: 'lion-puzzle-pieces',
+              onClick: function onClick() {
+                _this2.checkPuzzleComplete(_this2.props.selectedImgID, image.id);_this2.compareId(_this2.props.selectedImgID, image.id);
+              } });
+          }) : _react2.default.createElement('div', null)
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          this.state.lionArray.length > 0 ? Object.values(this.state.lionArray.map(function (imgData) {
+            return _react2.default.createElement('img', { src: imgData, key: imgData, className: 'lion-img-selection',
+              onClick: function onClick() {
+                console.log(imgData);_this2.handleClick(imgData);
+              } });
+          })) : _react2.default.createElement('div', null)
+        ),
+        lionPuzzleCompleteArray.length === 3 ? _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: '/animals-fish' },
+            _react2.default.createElement(
+              'h2',
+              { style: { paddingLeft: '880px' } },
+              'Next'
+            )
+          )
+        ) : _react2.default.createElement(
+          'div',
+          null,
+          ' '
+        )
+      );
+    }
+  }]);
+
+  return Test;
+}(_react2.default.Component);
+//this allows us to use what has been dispatched to redux state in this component via props
+
+
+function mapStateToProps(state) {
+  return {
+    selectedImgID: state.selectedImgID
+  };
+}
+
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(Test));
+
+/***/ }),
+/* 93 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var test = exports.test = [{ 4: '/lion/lion-row-2-col-2.jpg' }, { 1: '/lion/lion-row-1-col-1.jpg' }, { 3: '/lion/lion-row-2-col-1.jpg' }, { 2: '/lion/lion-row-1-col-2.jpg' }];
 
 /***/ })
 /******/ ]);

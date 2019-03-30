@@ -1,8 +1,10 @@
 import React from 'react'
-import { withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { selectImg } from '../actions/selectedImg'
 import { fishImages } from '../data/fishPuzzleImageData'
+
+const fishPuzzleCompleteArray = []
 
 class FishPuzzle extends React.Component {
     constructor (props) {
@@ -28,6 +30,14 @@ class FishPuzzle extends React.Component {
      }
     }
 
+    checkPuzzleComplete(selectedImgId, tileId) {
+      if (selectedImgId === tileId) {
+        fishPuzzleCompleteArray.push({[selectedImgId]: tileId})
+       } else {
+     console.log(selectedImgId, tileId)
+    }
+  }
+
     componentDidMount () {
 
       const newState = fishImages.map(imageData => {
@@ -49,7 +59,7 @@ class FishPuzzle extends React.Component {
         <div>
           {this.state.fishArray.length > 0 ? this.state.fishArray.map(image =>  {
             return <img key={image.id} id={image.id} className='fish-puzzle-pieces' 
-             onClick={() => this.compareId(this.props.selectedImgID, image.id)}/>
+             onClick={() => {this.checkPuzzleComplete(this.props.selectedImgID, image.id); this.compareId(this.props.selectedImgID, image.id)}}/>
             })
           : <div></div>
          }
@@ -63,6 +73,10 @@ class FishPuzzle extends React.Component {
            : <div></div>
          }
          </div> 
+
+         {fishPuzzleCompleteArray.length === 19 ? <div><Link to='/'><h2 style={{paddingLeft: '880px'}}>Next</h2></Link></div>
+        : <div> </div>}
+         
         </div>
       )
     }

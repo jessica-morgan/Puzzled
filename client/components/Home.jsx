@@ -7,6 +7,7 @@ const App = () => (
     <h1>Puzzled</h1>
     <h3>Category</h3>
       <Link to='/animals'>Animals</Link>
+      <Link to='/test'>Test</Link>
   </div>
 )
 
