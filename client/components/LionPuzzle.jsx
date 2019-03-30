@@ -12,7 +12,8 @@ class LionPuzzle extends React.Component {
       super(props)
       this.state = {
         lionArray: [],
-        shuffled: []
+        shuffled: [],
+        matched: []
       }
       this.handleClick = this.handleClick.bind(this)
       this.compareId = this.compareId.bind(this)
@@ -26,12 +27,31 @@ class LionPuzzle extends React.Component {
      this.props.dispatch(selectImg(id))
     }
   
+    shuffle(array) {
+      const newArray = []
+      array.forEach(obj => {
+        let newObj = Object.assign({}, obj)
+        newArray.push(newObj)
+      })
+        var ctr = newArray.length, temp, index;
+        while (ctr > 0) {
+            index = Math.floor(Math.random() * ctr);
+            ctr--;
+            temp = newArray[ctr];
+            newArray[ctr] = newArray[index];
+            newArray[index] = temp;
+        }
+        this.setState({shuffled: newArray})
+     }
+
     compareId(selectedImg, id) {
-     if (selectedImg === Number(id)) {
-       const img = document.getElementById(Number(id))
+     if (selectedImg === id) {
+       const img = document.getElementById(id)
         const item = this.state.lionArray.filter(item => item.id === id )
-          console.log(item)
          img.src = item[0].url
+// if these match remove the item from shuffled state
+          const removed = this.state.shuffled.filter(el => el.id !== id)
+        this.setState({shuffled: removed})
        } else {
       console.log(selectedImg, id)
      }
@@ -44,27 +64,6 @@ class LionPuzzle extends React.Component {
      console.log(selectedImgId, tileId)
     }
   }
-
-  shuffle(array) {
-  const newArray = []
-  array.forEach(obj => {
-    let newObj = Object.assign({}, obj)
-    newArray.push(newObj)
-  })
-    var ctr = newArray.length, temp, index;
-// While there are elements in the array
-    while (ctr > 0) {
-// Pick a random index
-        index = Math.floor(Math.random() * ctr);
-// Decrease ctr by 1
-        ctr--;
-// And swap the last element with it
-        temp = newArray[ctr];
-        newArray[ctr] = newArray[index];
-        newArray[index] = temp;
-    }
-    this.setState({shuffled: newArray})
- }
 
     componentDidMount () {
       const newState = lionImages.map(imageData => {
@@ -99,7 +98,7 @@ class LionPuzzle extends React.Component {
         <div>
           
           {this.state.lionArray.length > 0 ? this.state.shuffled.map(imgData => {
-            return <img src={imgData.url} key={imgData.id} className='lion-img-selection' 
+            return <img src={imgData.url} key={imgData.id} id={imgData.id} className='lion-img-selection' 
              onClick={() => this.handleClick(imgData.id)}/>
           })
           : <div></div>
@@ -111,7 +110,7 @@ class LionPuzzle extends React.Component {
 
         </div>
         {/* for some reason only works when checking === 3 or < 3 - isn't rendering div when checking === 4 or < 4 */}
-        {lionPuzzleCompleteArray.length === 3 ? <div><Link to='/animals-fish'><h2 style={{paddingLeft: '880px'}}>Next</h2></Link></div>
+        {lionPuzzleCompleteArray.length === 4 ? <div><Link to='/animals-fish'><h2 style={{paddingLeft: '880px'}}>Next</h2></Link></div>
         : <div> </div>}
          
         </div>

@@ -29,6 +29,8 @@ class FishPuzzle extends React.Component {
          const item = this.state.fishArray.filter(item => item.id === id )
            console.log(item)
           img.src = item[0].url
+          const removed = this.state.shuffled.filter(el => el.id !== id)
+        this.setState({shuffled: removed})
         } else {
        console.log(selectedImg, id)
       }
