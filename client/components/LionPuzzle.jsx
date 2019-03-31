@@ -79,12 +79,13 @@ class LionPuzzle extends React.Component {
 
     render () {
       return (
+        <body className='lion-page'>
         <div>
-         <div>
-        <h1>Animals</h1>
+         <div className='category-title'>
+          Animals
         </div>
 
-          <div>
+          <div style={{marginLeft: '5px', marginTop: '0px', marginBottom: '0px', paddingBottom: '0px', paddingTop: '0px'}}>
           {this.state.lionArray.length > 0 ? this.state.lionArray.map(image => {
             return <img key={image.id} id={image.id} className='lion-puzzle-pieces' 
              onClick={() => {this.checkPuzzleComplete(this.props.selectedImgID, image.id); 
@@ -95,7 +96,7 @@ class LionPuzzle extends React.Component {
          
         </div>
 
-        <div>
+        <div style={{marginLeft: '29px', marginTop: '0px', marginBottom: '0px', paddingBottom: '0px', paddingTop: '0px'}}>
           
           {this.state.lionArray.length > 0 ? this.state.shuffled.map(imgData => {
             return <img src={imgData.url} key={imgData.id} id={imgData.id} className='lion-img-selection' 
@@ -105,15 +106,19 @@ class LionPuzzle extends React.Component {
         }
 
         <div >
-          <button onClick={() => this.shuffle(this.state.shuffled)}>Shuffle</button>
+          {lionPuzzleCompleteArray.length < 4 ? <button className='shuffle-button' onClick={() => this.shuffle(this.state.shuffled)}>Shuffle</button>
+          : <div></div>}
         </div>
-
         </div>
-        {/* for some reason only works when checking === 3 or < 3 - isn't rendering div when checking === 4 or < 4 */}
-        {lionPuzzleCompleteArray.length === 4 ? <div><Link to='/animals-fish'><h2 style={{paddingLeft: '880px'}}>Next</h2></Link></div>
+        {lionPuzzleCompleteArray.length === 4 ? <div><Link to='/animals/fish'><img src='/next-button.png' className='next-button'/></Link></div>
         : <div> </div>}
-         
+
+        <div>
+         {lionPuzzleCompleteArray.length === 4 ? <div className='category-title'>Well done!</div>
+         : <div> </div>}
         </div>
+        </div>
+        </body>
       )
     }
   }

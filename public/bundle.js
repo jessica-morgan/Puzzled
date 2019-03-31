@@ -31390,8 +31390,8 @@ var App = function App() {
       _reactRouterDom.Switch,
       null,
       _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Home2.default }),
-      _react2.default.createElement(_reactRouterDom.Route, { path: '/animals', component: _LionPuzzle2.default }),
-      _react2.default.createElement(_reactRouterDom.Route, { path: '/animals-fish', component: _FishPuzzle2.default })
+      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/animals', component: _LionPuzzle2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/animals/fish', component: _FishPuzzle2.default })
     )
   );
 };
@@ -31417,29 +31417,75 @@ var _reactRouterDom = __webpack_require__(7);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var App = function App() {
+var Home = function Home() {
   return _react2.default.createElement(
-    'div',
-    null,
+    'body',
+    { className: 'home-page' },
     _react2.default.createElement(
-      'h1',
+      'div',
       null,
-      'Puzzled'
-    ),
-    _react2.default.createElement(
-      'h3',
-      null,
-      'Category'
-    ),
-    _react2.default.createElement(
-      _reactRouterDom.Link,
-      { to: '/animals' },
-      'Animals'
+      _react2.default.createElement(
+        'h1',
+        { className: 'puzzled-title' },
+        'Puzzled'
+      ),
+      _react2.default.createElement(
+        'p',
+        { className: 'home-page-subhead' },
+        'Pick a category'
+      ),
+      _react2.default.createElement('br', null),
+      _react2.default.createElement(
+        _reactRouterDom.Link,
+        { to: '/animals', style: { textDecoration: 'none' } },
+        _react2.default.createElement(
+          'button',
+          { className: 'button' },
+          'Animals'
+        )
+      ),
+      _react2.default.createElement('br', null),
+      _react2.default.createElement(
+        _reactRouterDom.Link,
+        { to: '/nature', style: { textDecoration: 'none' } },
+        _react2.default.createElement(
+          'button',
+          { className: 'button' },
+          'Nature'
+        )
+      ),
+      _react2.default.createElement('br', null),
+      _react2.default.createElement(
+        _reactRouterDom.Link,
+        { to: '/architecture', style: { textDecoration: 'none' } },
+        _react2.default.createElement(
+          'button',
+          { className: 'button' },
+          'Architecture'
+        )
+      ),
+      _react2.default.createElement('br', null),
+      _react2.default.createElement(
+        _reactRouterDom.Link,
+        { to: '/food', style: { textDecoration: 'none' } },
+        _react2.default.createElement(
+          'button',
+          { className: 'button' },
+          'Food'
+        )
+      ),
+      _react2.default.createElement('br', null),
+      _react2.default.createElement('br', null),
+      _react2.default.createElement('br', null),
+      _react2.default.createElement('br', null),
+      _react2.default.createElement('br', null),
+      _react2.default.createElement('br', null),
+      _react2.default.createElement('br', null)
     )
   );
 };
 
-exports.default = (0, _reactRouterDom.withRouter)(App);
+exports.default = (0, _reactRouterDom.withRouter)(Home);
 
 /***/ }),
 /* 88 */
@@ -31573,65 +31619,74 @@ var LionPuzzle = function (_React$Component) {
       var _this3 = this;
 
       return _react2.default.createElement(
-        'div',
-        null,
+        'body',
+        { className: 'lion-page' },
         _react2.default.createElement(
           'div',
           null,
           _react2.default.createElement(
-            'h1',
-            null,
+            'div',
+            { className: 'category-title' },
             'Animals'
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          null,
-          this.state.lionArray.length > 0 ? this.state.lionArray.map(function (image) {
-            return _react2.default.createElement('img', { key: image.id, id: image.id, className: 'lion-puzzle-pieces',
-              onClick: function onClick() {
-                _this3.checkPuzzleComplete(_this3.props.selectedImgID, image.id);
-                _this3.compareId(_this3.props.selectedImgID, image.id);
-              } });
-          }) : _react2.default.createElement('div', null)
-        ),
-        _react2.default.createElement(
-          'div',
-          null,
-          this.state.lionArray.length > 0 ? this.state.shuffled.map(function (imgData) {
-            return _react2.default.createElement('img', { src: imgData.url, key: imgData.id, id: imgData.id, className: 'lion-img-selection',
-              onClick: function onClick() {
-                return _this3.handleClick(imgData.id);
-              } });
-          }) : _react2.default.createElement('div', null),
+          ),
           _react2.default.createElement(
+            'div',
+            { style: { marginLeft: '5px', marginTop: '0px', marginBottom: '0px', paddingBottom: '0px', paddingTop: '0px' } },
+            this.state.lionArray.length > 0 ? this.state.lionArray.map(function (image) {
+              return _react2.default.createElement('img', { key: image.id, id: image.id, className: 'lion-puzzle-pieces',
+                onClick: function onClick() {
+                  _this3.checkPuzzleComplete(_this3.props.selectedImgID, image.id);
+                  _this3.compareId(_this3.props.selectedImgID, image.id);
+                } });
+            }) : _react2.default.createElement('div', null)
+          ),
+          _react2.default.createElement(
+            'div',
+            { style: { marginLeft: '29px', marginTop: '0px', marginBottom: '0px', paddingBottom: '0px', paddingTop: '0px' } },
+            this.state.lionArray.length > 0 ? this.state.shuffled.map(function (imgData) {
+              return _react2.default.createElement('img', { src: imgData.url, key: imgData.id, id: imgData.id, className: 'lion-img-selection',
+                onClick: function onClick() {
+                  return _this3.handleClick(imgData.id);
+                } });
+            }) : _react2.default.createElement('div', null),
+            _react2.default.createElement(
+              'div',
+              null,
+              lionPuzzleCompleteArray.length < 4 ? _react2.default.createElement(
+                'button',
+                { className: 'shuffle-button', onClick: function onClick() {
+                    return _this3.shuffle(_this3.state.shuffled);
+                  } },
+                'Shuffle'
+              ) : _react2.default.createElement('div', null)
+            )
+          ),
+          lionPuzzleCompleteArray.length === 4 ? _react2.default.createElement(
             'div',
             null,
             _react2.default.createElement(
-              'button',
-              { onClick: function onClick() {
-                  return _this3.shuffle(_this3.state.shuffled);
-                } },
-              'Shuffle'
+              _reactRouterDom.Link,
+              { to: '/animals/fish' },
+              _react2.default.createElement('img', { src: '/next-button.png', className: 'next-button' })
             )
-          )
-        ),
-        lionPuzzleCompleteArray.length === 4 ? _react2.default.createElement(
-          'div',
-          null,
+          ) : _react2.default.createElement(
+            'div',
+            null,
+            ' '
+          ),
           _react2.default.createElement(
-            _reactRouterDom.Link,
-            { to: '/animals-fish' },
-            _react2.default.createElement(
-              'h2',
-              { style: { paddingLeft: '880px' } },
-              'Next'
+            'div',
+            null,
+            lionPuzzleCompleteArray.length === 4 ? _react2.default.createElement(
+              'div',
+              { className: 'category-title' },
+              'Well done!'
+            ) : _react2.default.createElement(
+              'div',
+              null,
+              ' '
             )
           )
-        ) : _react2.default.createElement(
-          'div',
-          null,
-          ' '
         )
       );
     }
