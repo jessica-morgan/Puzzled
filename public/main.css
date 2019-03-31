@@ -43,18 +43,19 @@ body {
     border-top: 0px;
     position: relative;
     padding-top: 5px;
-    padding-bottom: 5px;
+    padding-bottom: 10px;
     color: rgb(222, 219, 226);
     -webkit-text-stroke: 3px;
     -webkit-text-stroke-color: rgb(171, 162, 209);
 }
-/* //get bg to stay in place */
+
 .lion-page {
-    background-image: url(./lion-background.png);
-    /* background-repeat: no-repeat; */
+    background-image: url(./lionbackground.png);
+    background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
-    position: absolute;
+    width: 100%;
+    position: fixed;
 }
 
 .lion-img-selection {
@@ -63,16 +64,65 @@ body {
     border-style: solid;
     border-width: 1px;
     border-color: rgb(222, 219, 226);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0px;
+    grid-row-gap: 0px;
+    grid-column-gap: 0px;
+    position: relative;
+    margin-left: 790px;
+    padding-top: 10px;
 }
 
 .lion-puzzle-pieces {
     width: 175px;
     height: 130px;
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-bottom: 0px;
-    padding-top: 0px;
-    text-align: center;
+}
+
+.lion-flexbox-left {
+    display: flex;
+    flex-wrap: wrap;
+    width: 350px;
+    gap: 0px;
+    grid-row-gap: 0px;
+    grid-column-gap: 0px;
+    padding-left: 80px;
+    position: fixed;
+    padding-top: 10px;
+  }
+  
+.lion-flexbox-right {
+    display: flex;
+    flex-wrap: wrap;
+    width: 340px;
+    gap: 0px;
+    grid-row-gap: 0px;
+    grid-column-gap: 0px;
+    position: fixed;
+    margin-left: 430px;
+    padding-top: 10px;
+  }
+
+  .lion-flexbox-left > img {
+    background-color: rgb(229, 223, 235);
+    flex: 1 1 auto;
+    width: 200px; 
+    height: 210px; 
+  }
+
+  .lion-flexbox-right > img {
+    background-color: rgb(229, 223, 235);
+    flex: 1 1 auto;
+    width: 200px; 
+    height: 210px; 
+  }
+
+.fish-page {
+    background-image: url(./fish-background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
 }
 
 .fish-img-selection {
@@ -109,24 +159,26 @@ body {
     color: rgb(112, 0, 187);
     background-color: rgb(236, 218, 247);
     fill-opacity: 0%;
-    height: 35px;
+    height: 40px;
+    width: 73px;
     text-align: center;
     position: fixed;
-    bottom: 20px;
-    margin-left: 122px;
+    bottom: 50px;
+    margin-left: 829px;
+    margin-top: -30px;
+    margin-bottom: 7px;
     text-decoration: none;
     border-radius: 15px 15px 15px 15px;
     border-color: white;
     border-style: solid;
-    opacity: 0.6;
-    margin-bottom: 7px;
+    opacity: 0.7;
   }
 
   .next-button {
-      width: 90px;
-      height: 60px;
+      width: 155px;
+      height: 122px;
       opacity: 0.9;
-      margin-left: 133px;
-      margin-top: 0px;
+      margin-left: 930px;
+      margin-top: 68px;
       padding-top: 0px;
   }

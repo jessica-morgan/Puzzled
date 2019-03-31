@@ -31631,18 +31631,33 @@ var LionPuzzle = function (_React$Component) {
           ),
           _react2.default.createElement(
             'div',
-            { style: { marginLeft: '5px', marginTop: '0px', marginBottom: '0px', paddingBottom: '0px', paddingTop: '0px' } },
+            { className: 'lion-flexbox-left' },
             this.state.lionArray.length > 0 ? this.state.lionArray.map(function (image) {
-              return _react2.default.createElement('img', { key: image.id, id: image.id, className: 'lion-puzzle-pieces',
-                onClick: function onClick() {
-                  _this3.checkPuzzleComplete(_this3.props.selectedImgID, image.id);
-                  _this3.compareId(_this3.props.selectedImgID, image.id);
-                } });
+              if (image.id === 1 || image.id === 3) {
+                return _react2.default.createElement('img', { key: image.id, id: image.id,
+                  onClick: function onClick() {
+                    _this3.checkPuzzleComplete(_this3.props.selectedImgID, image.id);
+                    _this3.compareId(_this3.props.selectedImgID, image.id);
+                  } });
+              }
             }) : _react2.default.createElement('div', null)
           ),
           _react2.default.createElement(
             'div',
-            { style: { marginLeft: '29px', marginTop: '0px', marginBottom: '0px', paddingBottom: '0px', paddingTop: '0px' } },
+            { className: 'lion-flexbox-right' },
+            this.state.lionArray.length > 0 ? this.state.lionArray.map(function (image) {
+              if (image.id === 2 || image.id === 4) {
+                return _react2.default.createElement('img', { key: image.id, id: image.id,
+                  onClick: function onClick() {
+                    _this3.checkPuzzleComplete(_this3.props.selectedImgID, image.id);
+                    _this3.compareId(_this3.props.selectedImgID, image.id);
+                  } });
+              }
+            }) : _react2.default.createElement('div', null)
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
             this.state.lionArray.length > 0 ? this.state.shuffled.map(function (imgData) {
               return _react2.default.createElement('img', { src: imgData.url, key: imgData.id, id: imgData.id, className: 'lion-img-selection',
                 onClick: function onClick() {
@@ -31676,7 +31691,7 @@ var LionPuzzle = function (_React$Component) {
           ),
           _react2.default.createElement(
             'div',
-            null,
+            { style: { marginLeft: '749px' } },
             lionPuzzleCompleteArray.length === 4 ? _react2.default.createElement(
               'div',
               { className: 'category-title' },
@@ -31686,7 +31701,22 @@ var LionPuzzle = function (_React$Component) {
               null,
               ' '
             )
-          )
+          ),
+          _react2.default.createElement('br', null),
+          ' ',
+          _react2.default.createElement('br', null),
+          ' ',
+          _react2.default.createElement('br', null),
+          _react2.default.createElement('br', null),
+          ' ',
+          _react2.default.createElement('br', null),
+          ' ',
+          _react2.default.createElement('br', null),
+          _react2.default.createElement('br', null),
+          ' ',
+          _react2.default.createElement('br', null),
+          ' ',
+          _react2.default.createElement('br', null)
         )
       );
     }
@@ -31848,56 +31878,81 @@ var FishPuzzle = function (_React$Component) {
       var _this3 = this;
 
       return _react2.default.createElement(
-        'div',
-        null,
+        'body',
+        { className: 'fish-page' },
         _react2.default.createElement(
           'div',
           null,
-          this.state.fishArray.length > 0 ? this.state.fishArray.map(function (image) {
-            return _react2.default.createElement('img', { key: image.id, id: image.id, className: 'fish-puzzle-pieces',
-              onClick: function onClick() {
-                _this3.checkPuzzleComplete(_this3.props.selectedImgID, image.id);
-                _this3.compareId(_this3.props.selectedImgID, image.id);
-              } });
-          }) : _react2.default.createElement('div', null)
-        ),
-        _react2.default.createElement(
-          'div',
-          null,
-          this.state.fishArray.length > 0 ? this.state.shuffled.map(function (imgData) {
-            return _react2.default.createElement('img', { src: imgData.url, key: imgData.id, className: 'fish-img-selection',
-              onClick: function onClick() {
-                return _this3.handleClick(imgData.id);
-              } });
-          }) : _react2.default.createElement('div', null),
           _react2.default.createElement(
             'div',
             null,
-            _react2.default.createElement(
-              'button',
-              { onClick: function onClick() {
-                  return _this3.shuffle(_this3.state.shuffled);
-                } },
-              'Shuffle'
-            )
-          )
-        ),
-        fishPuzzleCompleteArray.length === 19 ? _react2.default.createElement(
-          'div',
-          null,
+            this.state.fishArray.length > 0 ? this.state.fishArray.map(function (image) {
+              return _react2.default.createElement('img', { key: image.id, id: image.id, className: 'fish-puzzle-pieces',
+                onClick: function onClick() {
+                  _this3.checkPuzzleComplete(_this3.props.selectedImgID, image.id);
+                  _this3.compareId(_this3.props.selectedImgID, image.id);
+                } });
+            }) : _react2.default.createElement('div', null)
+          ),
           _react2.default.createElement(
-            _reactRouterDom.Link,
-            { to: '/' },
+            'div',
+            null,
+            this.state.fishArray.length > 0 ? this.state.shuffled.map(function (imgData) {
+              return _react2.default.createElement('img', { src: imgData.url, key: imgData.id, className: 'fish-img-selection',
+                onClick: function onClick() {
+                  return _this3.handleClick(imgData.id);
+                } });
+            }) : _react2.default.createElement('div', null),
             _react2.default.createElement(
-              'h2',
-              { style: { paddingLeft: '880px' } },
-              'Next'
+              'div',
+              null,
+              fishPuzzleCompleteArray.length < 4 ? _react2.default.createElement(
+                'button',
+                { className: 'shuffle-button', onClick: function onClick() {
+                    return _this3.shuffle(_this3.state.shuffled);
+                  } },
+                'Shuffle'
+              ) : _react2.default.createElement('div', null)
+            ),
+            _react2.default.createElement('div', null)
+          ),
+          fishPuzzleCompleteArray.length < 20 ? _react2.default.createElement(
+            'button',
+            { className: 'shuffle-button', onClick: function onClick() {
+                return _this3.shuffle(_this3.state.shuffled);
+              } },
+            'Shuffle'
+          ) : _react2.default.createElement('div', null),
+          fishPuzzleCompleteArray.length === 20 ? _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { to: '/' },
+              _react2.default.createElement(
+                'h2',
+                { style: { paddingLeft: '880px' } },
+                'Next'
+              )
+            )
+          ) : _react2.default.createElement(
+            'div',
+            null,
+            ' '
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            fishPuzzleCompleteArray.length === 20 ? _react2.default.createElement(
+              'div',
+              { className: 'category-title' },
+              'Well done!'
+            ) : _react2.default.createElement(
+              'div',
+              null,
+              ' '
             )
           )
-        ) : _react2.default.createElement(
-          'div',
-          null,
-          ' '
         )
       );
     }

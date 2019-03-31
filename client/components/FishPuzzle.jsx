@@ -81,7 +81,7 @@ class FishPuzzle extends React.Component {
     render () {
 
       return (
-        
+        <body className='fish-page'>
         <div>         
 
         <div>
@@ -102,16 +102,30 @@ class FishPuzzle extends React.Component {
            : <div></div>
          }
 
-         <div>
-           <button onClick={() => this.shuffle(this.state.shuffled)}>Shuffle</button>
-         </div>
+        <div >
+          {fishPuzzleCompleteArray.length < 4 ? <button className='shuffle-button' onClick={() => this.shuffle(this.state.shuffled)}>Shuffle</button>
+          : <div></div>}
+        </div>
+
+          <div>
+
+          </div>
 
         </div> 
 
-         {fishPuzzleCompleteArray.length === 19 ? <div><Link to='/'><h2 style={{paddingLeft: '880px'}}>Next</h2></Link></div>
+        {fishPuzzleCompleteArray.length < 20 ? <button className='shuffle-button' onClick={() => this.shuffle(this.state.shuffled)}>Shuffle</button>
+          : <div></div>}
+
+         {fishPuzzleCompleteArray.length === 20 ? <div><Link to='/'><h2 style={{paddingLeft: '880px'}}>Next</h2></Link></div>
         : <div> </div>}
-         
+
+        <div>
+         {fishPuzzleCompleteArray.length === 20 ? <div className='category-title'>Well done!</div>
+         : <div> </div>}
         </div>
+
+        </div>
+        </body>
       )
     }
   }
