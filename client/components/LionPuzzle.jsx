@@ -12,8 +12,7 @@ class LionPuzzle extends React.Component {
       super(props)
       this.state = {
         lionArray: [],
-        shuffled: [],
-        matched: []
+        shuffled: []
       }
       this.handleClick = this.handleClick.bind(this)
       this.compareId = this.compareId.bind(this)
@@ -84,7 +83,6 @@ class LionPuzzle extends React.Component {
          <div className='category-title'>
           Animals
         </div>
-    
           <div className='lion-flexbox-left'>
           {this.state.lionArray.length > 0 ? this.state.lionArray.map(image => {
             if (image.id === 1 || image.id === 3) {
@@ -96,7 +94,6 @@ class LionPuzzle extends React.Component {
           : <div></div>
          }
         </div>
-
         <div className='lion-flexbox-right'>
           {this.state.lionArray.length > 0 ? this.state.lionArray.map(image => {
             if (image.id === 2 || image.id === 4) {
@@ -110,14 +107,12 @@ class LionPuzzle extends React.Component {
         </div>
 
         <div >
-          
           {this.state.lionArray.length > 0 ? this.state.shuffled.map(imgData => {
             return <img src={imgData.url} key={imgData.id} id={imgData.id} className='lion-img-selection' 
              onClick={() => this.handleClick(imgData.id)}/>
           })
           : <div></div>
         }
-
         <div >
           {lionPuzzleCompleteArray.length < 4 ? <button className='shuffle-button' onClick={() => this.shuffle(this.state.shuffled)}>Shuffle</button>
           : <div></div>}
@@ -125,14 +120,11 @@ class LionPuzzle extends React.Component {
         </div>
         {lionPuzzleCompleteArray.length === 4 ? <div><Link to='/animals/fish'><img src='/next-button.png' className='next-button'/></Link></div>
         : <div> </div>}
-
         <div style={{marginLeft: '749px'}}>
          {lionPuzzleCompleteArray.length === 4 ? <div className='category-title'>Well done!</div>
          : <div> </div>}
         </div>
-        <br/> <br/> <br/>
-        <br/> <br/> <br/>
-        <br/> <br/> <br/>
+        <br/> <br/> <br/><br/> <br/> <br/><br/> <br/> <br/>
         </div>
         </body>
       )

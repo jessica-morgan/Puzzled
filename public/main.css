@@ -74,11 +74,6 @@ body {
     padding-top: 10px;
 }
 
-.lion-puzzle-pieces {
-    width: 175px;
-    height: 130px;
-}
-
 .lion-flexbox-left {
     display: flex;
     flex-wrap: wrap;
@@ -123,17 +118,28 @@ body {
     background-size: cover;
     height: 100%;
     width: 100%;
+    position: fixed;
 }
 
 .fish-img-selection {
     width: 100px;
     height: 55px;
-    padding-right: 3px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    position: relative;
 }
 
 .fish-puzzle-pieces {
     width: 190px;
     height: 100px;
+    gap: 0px;
+    grid-row-gap: 0px;
+    grid-column-gap: 0px;
+    /* display: flex; */
+    flex-wrap: wrap;
+    background-color: rgb(229, 223, 235);
+    flex: 1 1 auto;
+    margin-top: -4px;
 }
 
 .button {

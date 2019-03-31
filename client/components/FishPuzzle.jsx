@@ -83,18 +83,66 @@ class FishPuzzle extends React.Component {
       return (
         <body className='fish-page'>
         <div>         
-
-        <div>
+        <div className='category-title'>
+          Animals
+        </div>
+        <div style={{marginLeft: '20px'}}>
           {this.state.fishArray.length > 0 ? this.state.fishArray.map(image =>  {
+            if (image.id <= 4) {
             return <img key={image.id} id={image.id} className='fish-puzzle-pieces' 
              onClick={() => {this.checkPuzzleComplete(this.props.selectedImgID, image.id); 
               this.compareId(this.props.selectedImgID, image.id)}}/>
+             }
             })
           : <div></div>
          }
-         </div> 
-
-         <div>
+         </div>
+         <div style={{marginLeft: '20px'}}>
+         {this.state.fishArray.length > 0 ? this.state.fishArray.map(image =>  {
+            if (image.id > 4 && image.id <= 8) {
+            return <img key={image.id} id={image.id} className='fish-puzzle-pieces' 
+             onClick={() => {this.checkPuzzleComplete(this.props.selectedImgID, image.id); 
+              this.compareId(this.props.selectedImgID, image.id)}}/>
+             }
+            })
+          : <div></div>
+         }
+         </div>
+         <div style={{marginLeft: '20px'}}>
+         {this.state.fishArray.length > 0 ? this.state.fishArray.map(image =>  {
+            if (image.id > 8 && image.id <= 12) {
+            return <img key={image.id} id={image.id} className='fish-puzzle-pieces' 
+             onClick={() => {this.checkPuzzleComplete(this.props.selectedImgID, image.id); 
+              this.compareId(this.props.selectedImgID, image.id)}}/>
+             }
+            })
+          : <div></div>
+         }
+         </div>
+         <div style={{marginLeft: '20px'}}>
+         {this.state.fishArray.length > 0 ? this.state.fishArray.map(image =>  {
+            if (image.id > 12 && image.id <= 16) {
+            return <img key={image.id} id={image.id} className='fish-puzzle-pieces' 
+             onClick={() => {this.checkPuzzleComplete(this.props.selectedImgID, image.id); 
+              this.compareId(this.props.selectedImgID, image.id)}}/>
+             }
+            })
+          : <div></div>
+         }
+         </div>
+         <div style={{marginLeft: '20px'}}>
+         {this.state.fishArray.length > 0 ? this.state.fishArray.map(image =>  {
+            if (image.id > 16 && image.id <= 20) {
+            return <img key={image.id} id={image.id} className='fish-puzzle-pieces' 
+             onClick={() => {this.checkPuzzleComplete(this.props.selectedImgID, image.id); 
+              this.compareId(this.props.selectedImgID, image.id)}}/>
+             }
+            })
+          : <div></div>
+         }
+         </div>
+       
+         <div style={{marginLeft: '800px', marginTop: '-440px', marginBottom: '9px'}}>
           {this.state.fishArray.length > 0 ? this.state.shuffled.map(imgData =>  {
            return <img src={imgData.url} key={imgData.id} className='fish-img-selection' 
             onClick={() => this.handleClick(imgData.id)}/>
@@ -103,28 +151,27 @@ class FishPuzzle extends React.Component {
          }
 
         <div >
-          {fishPuzzleCompleteArray.length < 4 ? <button className='shuffle-button' onClick={() => this.shuffle(this.state.shuffled)}>Shuffle</button>
+          {fishPuzzleCompleteArray.length > 19 ? <button className='shuffle-button' onClick={() => this.shuffle(this.state.shuffled)}>Shuffle</button>
           : <div></div>}
         </div>
 
           <div>
-
           </div>
-
         </div> 
-
-        {fishPuzzleCompleteArray.length < 20 ? <button className='shuffle-button' onClick={() => this.shuffle(this.state.shuffled)}>Shuffle</button>
+        <div style={{marginLeft: '150px'}}>
+        {fishPuzzleCompleteArray.length < 19 ? <button className='shuffle-button' onClick={() => this.shuffle(this.state.shuffled)}>Shuffle</button>
           : <div></div>}
-
-         {fishPuzzleCompleteArray.length === 20 ? <div><Link to='/'><h2 style={{paddingLeft: '880px'}}>Next</h2></Link></div>
+        </div>
+        <div >
+        {fishPuzzleCompleteArray.length === 20 ? <div><Link to='/animals/flamingos'><img src='/next-button.png' className='next-button'/></Link></div>
         : <div> </div>}
-
-        <div>
+        </div>
+        <div style={{marginLeft: '740px', marginTop: '-15px'}}>
          {fishPuzzleCompleteArray.length === 20 ? <div className='category-title'>Well done!</div>
          : <div> </div>}
         </div>
-
         </div>
+        <br/><br/><br/><br/><br/><br/><br/><br/>
         </body>
       )
     }
