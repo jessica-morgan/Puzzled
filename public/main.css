@@ -10,6 +10,9 @@ body {
     font-family: 'Muli', sans-serif;
     text-align: center;
     font-size: 17px;
+    height: 100%;
+    width: 100%;
+    position: fixed;
 }
 
 .home-page-subhead {
@@ -75,7 +78,7 @@ body {
     padding-top: 10px;
 }
 
-.lion-flexbox-left {
+.flexbox-left {
     display: flex;
     flex-wrap: wrap;
     width: 350px;
@@ -87,7 +90,7 @@ body {
     padding-top: 10px;
   }
   
-.lion-flexbox-right {
+.flexbox-right {
     display: flex;
     flex-wrap: wrap;
     width: 340px;
@@ -99,14 +102,14 @@ body {
     padding-top: 10px;
   }
 
-  .lion-flexbox-left > img {
+  .flexbox-left > img {
     background-color: rgb(229, 223, 235);
     flex: 1 1 auto;
     width: 200px; 
     height: 210px; 
   }
 
-  .lion-flexbox-right > img {
+  .flexbox-right > img {
     background-color: rgb(229, 223, 235);
     flex: 1 1 auto;
     width: 200px; 
@@ -136,7 +139,6 @@ body {
     gap: 0px;
     grid-row-gap: 0px;
     grid-column-gap: 0px;
-    /* display: flex; */
     flex-wrap: wrap;
     background-color: rgb(229, 223, 235);
     flex: 1 1 auto;
@@ -168,13 +170,22 @@ body {
     margin-top: 11px;
 }
 
+.india-page {
+    background-image: url(./india-background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+}
+
 .button {
     position: relative;
     color: rgb(112, 0, 187);
-    /* background-color: transparent; */
     background-color: rgb(236, 218, 247);
     fill-opacity: 0%;
-    height: 35px;
+    height: 45px;
+    width: 100px;
     text-align: center;
     display: block;
     margin-left: auto;
@@ -185,20 +196,19 @@ body {
     border-style: solid;
     opacity: 0.5;
     margin-bottom: 7px;
+    font-size: 18px;
+    font-family: 'Muli', sans-serif;
   }
 
   .shuffle-button {
     color: rgb(112, 0, 187);
     background-color: rgb(236, 218, 247);
-    fill-opacity: 0%;
     height: 40px;
     width: 73px;
     text-align: center;
     position: fixed;
-    bottom: 50px;
     margin-left: 829px;
-    margin-top: -30px;
-    margin-bottom: 7px;
+    margin-top: 10px;
     text-decoration: none;
     border-radius: 15px 15px 15px 15px;
     border-color: white;

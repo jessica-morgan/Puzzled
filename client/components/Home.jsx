@@ -16,16 +16,16 @@ const Home = () => (
      <button className='button'>Nature</button>
      </Link>
      <br/>
-     <Link to='/food' style={{ textDecoration: 'none'}}>
-     <button className='button'>Food</button>
+     <Link to='/places' style={{ textDecoration: 'none'}}>
+     <button className='button'>Places</button>
      </Link>
-     <br/>
+     {/* <br/>
      <br/><br/><br/>
      <br/>
      <br/>
      <br/>
      <br/>
-     <br/>
+     <br/> */}
   </div>
   </body>
 )

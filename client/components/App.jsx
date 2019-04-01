@@ -4,6 +4,7 @@ import Home from './Home'
 import LionPuzzle from './LionPuzzle'
 import FishPuzzle from './FishPuzzle'
 import LiliesPuzzle from './LiliesPuzzle'
+import IndiaPuzzle from './IndiaPuzzle';
 
 
 const App = () => (
@@ -12,7 +13,8 @@ const App = () => (
       <Route exact path='/' component={Home}/>
       <Route exact path='/animals' component={LionPuzzle}/>
       <Route path='/animals/fish' component={FishPuzzle}/>
-      <Route pather='/nature' component={LiliesPuzzle}/>
+      <Route path='/nature' component={LiliesPuzzle}/>
+      <Route path='/places' component={IndiaPuzzle}/>
     </Switch>
   </div>
 )
