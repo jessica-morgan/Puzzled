@@ -18,6 +18,7 @@ body {
     font-size: 25px;
     color: rgb(112, 0, 187);
     opacity: 0.7;
+    margin-bottom: 41px;
 }
 
 .puzzled-title {
@@ -140,6 +141,31 @@ body {
     background-color: rgb(229, 223, 235);
     flex: 1 1 auto;
     margin-top: -4px;
+}
+
+.lilies-page {
+    background-image: url(./lilies-background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+}
+
+.lilies-img-selection {
+    width: 145px;
+    height: 95px; 
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(222, 219, 226);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0px;
+    grid-row-gap: 0px;
+    grid-column-gap: 0px;
+    position: relative;
+    margin-left: 790px;
+    margin-top: 11px;
 }
 
 .button {

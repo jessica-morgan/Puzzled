@@ -3,6 +3,7 @@ import { Route, withRouter, Switch } from 'react-router-dom'
 import Home from './Home'
 import LionPuzzle from './LionPuzzle'
 import FishPuzzle from './FishPuzzle'
+import LiliesPuzzle from './LiliesPuzzle'
 
 
 const App = () => (
@@ -11,8 +12,7 @@ const App = () => (
       <Route exact path='/' component={Home}/>
       <Route exact path='/animals' component={LionPuzzle}/>
       <Route path='/animals/fish' component={FishPuzzle}/>
-      
-
+      <Route pather='/nature' component={LiliesPuzzle}/>
     </Switch>
   </div>
 )

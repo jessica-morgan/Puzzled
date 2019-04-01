@@ -16,15 +16,11 @@ const Home = () => (
      <button className='button'>Nature</button>
      </Link>
      <br/>
-     <Link to='/architecture' style={{ textDecoration: 'none'}}>
-     <button className='button'>Architecture</button>
-     </Link>
-     <br/>
      <Link to='/food' style={{ textDecoration: 'none'}}>
      <button className='button'>Food</button>
      </Link>
      <br/>
-     <br/>
+     <br/><br/><br/>
      <br/>
      <br/>
      <br/>

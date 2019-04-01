@@ -31380,6 +31380,10 @@ var _FishPuzzle = __webpack_require__(90);
 
 var _FishPuzzle2 = _interopRequireDefault(_FishPuzzle);
 
+var _LiliesPuzzle = __webpack_require__(92);
+
+var _LiliesPuzzle2 = _interopRequireDefault(_LiliesPuzzle);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
@@ -31391,7 +31395,8 @@ var App = function App() {
       null,
       _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Home2.default }),
       _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/animals', component: _LionPuzzle2.default }),
-      _react2.default.createElement(_reactRouterDom.Route, { path: '/animals/fish', component: _FishPuzzle2.default })
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/animals/fish', component: _FishPuzzle2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { pather: '/nature', component: _LiliesPuzzle2.default })
     )
   );
 };
@@ -31457,16 +31462,6 @@ var Home = function Home() {
       _react2.default.createElement('br', null),
       _react2.default.createElement(
         _reactRouterDom.Link,
-        { to: '/architecture', style: { textDecoration: 'none' } },
-        _react2.default.createElement(
-          'button',
-          { className: 'button' },
-          'Architecture'
-        )
-      ),
-      _react2.default.createElement('br', null),
-      _react2.default.createElement(
-        _reactRouterDom.Link,
         { to: '/food', style: { textDecoration: 'none' } },
         _react2.default.createElement(
           'button',
@@ -31474,6 +31469,8 @@ var Home = function Home() {
           'Food'
         )
       ),
+      _react2.default.createElement('br', null),
+      _react2.default.createElement('br', null),
       _react2.default.createElement('br', null),
       _react2.default.createElement('br', null),
       _react2.default.createElement('br', null),
@@ -31993,7 +31990,7 @@ var FishPuzzle = function (_React$Component) {
               null,
               _react2.default.createElement(
                 _reactRouterDom.Link,
-                { to: '/animals/flamingos' },
+                { to: '/' },
                 _react2.default.createElement('img', { src: '/next-button.png', className: 'next-button' })
               )
             ) : _react2.default.createElement(
@@ -32050,6 +32047,259 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var fishImages = exports.fishImages = [{ id: 1, img: '/fish/fish-row-1-col-1.jpg' }, { id: 2, img: '/fish/fish-row-1-col-2.jpg' }, { id: 3, img: '/fish/fish-row-1-col-3.jpg' }, { id: 4, img: '/fish/fish-row-1-col-4.jpg' }, { id: 5, img: '/fish/fish-row-2-col-1.jpg' }, { id: 6, img: '/fish/fish-row-2-col-2.jpg' }, { id: 7, img: '/fish/fish-row-2-col-3.jpg' }, { id: 8, img: '/fish/fish-row-2-col-4.jpg' }, { id: 9, img: '/fish/fish-row-3-col-1.jpg' }, { id: 10, img: '/fish/fish-row-3-col-2.jpg' }, { id: 11, img: '/fish/fish-row-3-col-3.jpg' }, { id: 12, img: '/fish/fish-row-3-col-4.jpg' }, { id: 13, img: '/fish/fish-row-4-col-1.jpg' }, { id: 14, img: '/fish/fish-row-4-col-2.jpg' }, { id: 15, img: '/fish/fish-row-4-col-3.jpg' }, { id: 16, img: '/fish/fish-row-4-col-4.jpg' }, { id: 17, img: '/fish/fish-row-5-col-1.jpg' }, { id: 18, img: '/fish/fish-row-5-col-2.jpg' }, { id: 19, img: '/fish/fish-row-5-col-3.jpg' }, { id: 20, img: '/fish/fish-row-5-col-4.jpg' }];
+
+/***/ }),
+/* 92 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(7);
+
+var _reactRedux = __webpack_require__(13);
+
+var _selectedImg = __webpack_require__(31);
+
+var _liliesPuzzleImageData = __webpack_require__(93);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var liliesPuzzleCompleteArray = [];
+
+var LiliesPuzzle = function (_React$Component) {
+  _inherits(LiliesPuzzle, _React$Component);
+
+  function LiliesPuzzle(props) {
+    _classCallCheck(this, LiliesPuzzle);
+
+    var _this = _possibleConstructorReturn(this, (LiliesPuzzle.__proto__ || Object.getPrototypeOf(LiliesPuzzle)).call(this, props));
+
+    _this.state = {
+      liliesArray: [],
+      shuffled: []
+    };
+    _this.handleClick = _this.handleClick.bind(_this);
+    _this.compareId = _this.compareId.bind(_this);
+    _this.checkPuzzleComplete = _this.checkPuzzleComplete.bind(_this);
+    _this.shuffle = _this.shuffle.bind(_this);
+    return _this;
+  }
+
+  _createClass(LiliesPuzzle, [{
+    key: 'handleClick',
+    value: function handleClick(id) {
+      console.log(id);
+      this.props.dispatch((0, _selectedImg.selectImg)(id));
+    }
+  }, {
+    key: 'shuffle',
+    value: function shuffle(array) {
+      var newArray = [];
+      array.forEach(function (obj) {
+        var newObj = Object.assign({}, obj);
+        newArray.push(newObj);
+      });
+      var ctr = newArray.length,
+          temp,
+          index;
+      while (ctr > 0) {
+        index = Math.floor(Math.random() * ctr);
+        ctr--;
+        temp = newArray[ctr];
+        newArray[ctr] = newArray[index];
+        newArray[index] = temp;
+      }
+      this.setState({ shuffled: newArray });
+    }
+  }, {
+    key: 'compareId',
+    value: function compareId(selectedImg, id) {
+      if (selectedImg === id) {
+        var img = document.getElementById(id);
+        var item = this.state.liliesArray.filter(function (item) {
+          return item.id === id;
+        });
+        img.src = item[0].url;
+        var removed = this.state.shuffled.filter(function (el) {
+          return el.id !== id;
+        });
+        this.setState({ shuffled: removed });
+      } else {
+        console.log(selectedImg, id);
+      }
+    }
+  }, {
+    key: 'checkPuzzleComplete',
+    value: function checkPuzzleComplete(selectedImgId, tileId) {
+      if (selectedImgId === tileId) {
+        liliesPuzzleCompleteArray.push(_defineProperty({}, selectedImgId, tileId));
+      } else {
+        console.log(selectedImgId, tileId);
+      }
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      var newState = _liliesPuzzleImageData.liliesImages.map(function (imageData) {
+        return { id: imageData.id,
+          url: imageData.img };
+      });
+      this.setState({ liliesArray: newState }, function () {
+        _this2.shuffle(_this2.state.liliesArray);
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      return _react2.default.createElement(
+        'body',
+        { className: 'lilies-page' },
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'div',
+            { className: 'category-title' },
+            'Nature'
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'lion-flexbox-left' },
+            this.state.liliesArray.length > 0 ? this.state.liliesArray.map(function (image) {
+              if (image.id === 1 || image.id === 3) {
+                return _react2.default.createElement('img', { key: image.id, id: image.id,
+                  onClick: function onClick() {
+                    _this3.checkPuzzleComplete(_this3.props.selectedImgID, image.id);
+                    _this3.compareId(_this3.props.selectedImgID, image.id);
+                  } });
+              }
+            }) : _react2.default.createElement('div', null)
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'lion-flexbox-right' },
+            this.state.liliesArray.length > 0 ? this.state.liliesArray.map(function (image) {
+              if (image.id === 2 || image.id === 4) {
+                return _react2.default.createElement('img', { key: image.id, id: image.id,
+                  onClick: function onClick() {
+                    _this3.checkPuzzleComplete(_this3.props.selectedImgID, image.id);
+                    _this3.compareId(_this3.props.selectedImgID, image.id);
+                  } });
+              }
+            }) : _react2.default.createElement('div', null)
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            this.state.liliesArray.length > 0 ? this.state.shuffled.map(function (imgData) {
+              return _react2.default.createElement('img', { src: imgData.url, key: imgData.id, id: imgData.id, className: 'lilies-img-selection',
+                onClick: function onClick() {
+                  return _this3.handleClick(imgData.id);
+                } });
+            }) : _react2.default.createElement('div', null),
+            _react2.default.createElement(
+              'div',
+              null,
+              liliesPuzzleCompleteArray.length < 4 ? _react2.default.createElement(
+                'button',
+                { className: 'shuffle-button', onClick: function onClick() {
+                    return _this3.shuffle(_this3.state.shuffled);
+                  } },
+                'Shuffle'
+              ) : _react2.default.createElement('div', null)
+            )
+          ),
+          liliesPuzzleCompleteArray.length === 4 ? _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { to: '/animals/fish' },
+              _react2.default.createElement('img', { src: '/next-button.png', className: 'next-button' })
+            )
+          ) : _react2.default.createElement(
+            'div',
+            null,
+            ' '
+          ),
+          _react2.default.createElement(
+            'div',
+            { style: { marginLeft: '749px' } },
+            liliesPuzzleCompleteArray.length === 4 ? _react2.default.createElement(
+              'div',
+              { className: 'category-title' },
+              'Well done!'
+            ) : _react2.default.createElement(
+              'div',
+              null,
+              ' '
+            )
+          ),
+          _react2.default.createElement('br', null),
+          ' ',
+          _react2.default.createElement('br', null),
+          ' ',
+          _react2.default.createElement('br', null),
+          _react2.default.createElement('br', null),
+          ' ',
+          _react2.default.createElement('br', null),
+          ' ',
+          _react2.default.createElement('br', null),
+          _react2.default.createElement('br', null),
+          ' ',
+          _react2.default.createElement('br', null),
+          ' ',
+          _react2.default.createElement('br', null)
+        )
+      );
+    }
+  }]);
+
+  return LiliesPuzzle;
+}(_react2.default.Component);
+
+function mapStateToProps(state) {
+  return {
+    selectedImgID: state.selectedImgID
+  };
+}
+
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(LiliesPuzzle));
+
+/***/ }),
+/* 93 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var liliesImages = exports.liliesImages = [{ id: 1, img: '/waterlilies/lilies-row-1-col-1.jpg' }, { id: 2, img: '/waterlilies/lilies-row-1-col-2.jpg' }, { id: 3, img: '/waterlilies/lilies-row-2-col-1.jpg' }, { id: 4, img: '/waterlilies/lilies-row-2-col-2.jpg' }];
 
 /***/ })
 /******/ ]);

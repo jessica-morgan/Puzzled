@@ -163,7 +163,7 @@ class FishPuzzle extends React.Component {
           : <div></div>}
         </div>
         <div >
-        {fishPuzzleCompleteArray.length === 20 ? <div><Link to='/animals/flamingos'><img src='/next-button.png' className='next-button'/></Link></div>
+        {fishPuzzleCompleteArray.length === 20 ? <div><Link to='/'><img src='/next-button.png' className='next-button'/></Link></div>
         : <div> </div>}
         </div>
         <div style={{marginLeft: '740px', marginTop: '-15px'}}>
